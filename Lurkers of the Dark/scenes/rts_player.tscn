@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dplu221g2unkm"]
+
+[ext_resource type="Script" path="res://scenes/RTSPlayer.gd" id="1_h475b"]
+[ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/zombie.tscn" id="2_pqxl4"]
+
+[node name="RTSPlayer" type="Node2D"]
+script = ExtResource("1_h475b")
+zombie_scene = ExtResource("2_pqxl4")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath(".")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
