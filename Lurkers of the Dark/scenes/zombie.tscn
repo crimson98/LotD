@@ -8,11 +8,24 @@ radius = 64.0
 height = 128.0
 
 [node name="Zombie" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_m41g3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_a0iin")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Alive" type="Sprite2D" parent="Graphics"]
 modulate = Color(0.87451, 0.529412, 0, 1)
 texture = ExtResource("1_6ixc6")
+
+[node name="Dead" type="Sprite2D" parent="Graphics"]
+modulate = Color(0.87451, 0.529412, 0, 1)
+z_index = -1
+texture = ExtResource("1_6ixc6")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -70)
+collision_mask = 3

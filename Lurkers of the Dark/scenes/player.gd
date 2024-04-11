@@ -5,9 +5,9 @@ extends CharacterBody2D
 
 @export var bullet_scene: PackedScene
 
-
-var speed = 200
-var acceleration = 300
+@export var speed = 200
+@export var acceleration = 300
+var dead = false
 
 @export var score = 1 :
 	set(value):

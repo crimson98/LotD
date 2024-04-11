@@ -13,15 +13,14 @@ properties/0/path = NodePath(".:score")
 properties/0/spawn = true
 properties/0/replication_mode = 2
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_7q1sy")
 bullet_scene = ExtResource("2_pyqhq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rl8oa")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_omytg")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/bullet.tscn")
@@ -32,3 +31,12 @@ replication_config = SubResource("SceneReplicationConfig_8jyo0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("4_4p8xx")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Alive" type="Sprite2D" parent="Graphics"]
+texture = ExtResource("1_omytg")
+
+[node name="Dead" type="Sprite2D" parent="Graphics"]
+z_index = -1
+texture = ExtResource("1_omytg")
