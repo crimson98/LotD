@@ -4,6 +4,7 @@ extends Node2D
 #var player_scene = preload("res://scenes/player.tscn")
 @export var player_scene: PackedScene
 @export var rts_player: PackedScene
+@export var zombie: PackedScene
 @onready var players: Node2D = $Players
 @onready var player_a = $SpawnMarker/PlayerA
 @onready var player_b = $SpawnMarker/PlayerB
@@ -16,6 +17,7 @@ func _ready() -> void:
 			player.global_position = player_a.global_position
 		if player_data.role == Statics.Role.ROLE_B:
 			player.global_position = player_b.global_position
+		zombie.instantiate()
 		players.add_child(player)
 		player.setup(player_data)
 		

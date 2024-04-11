@@ -1,4 +1,7 @@
 res://scenes/player.tscn
 res://scenes/player.gd
+res://scenes/lobby.tscn
 res://scenes/zombie.gd
 res://scenes/zombie.tscn
+res://scenes/main.tscn
+res://scenes/main.gd

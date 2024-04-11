@@ -19,7 +19,7 @@ func _physics_process(delta):
 	global_rotation = dir_to_player.angle() + PI/2.0
 	
 	if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider() == player:
-		pass
+		player.receive_damage(dmg)
 
 func kill():
 	if dead:
@@ -31,3 +31,11 @@ func kill():
 	$CollisionShape2D.disabled = true
 	z_index = -1
 	
+func setup(player_data: Statics.PlayerData):
+	name = str(player_data.id)
+	set_multiplayer_authority(player_data.id)
+
+@rpc
+func send_data(pos: Vector2, vel: Vector2):
+	global_position = lerp(global_position, pos, 0.75)
+	velocity = lerp(velocity, vel, 0.75)

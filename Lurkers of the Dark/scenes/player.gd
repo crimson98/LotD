@@ -6,7 +6,9 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 
 @export var speed = 200
-@export var acceleration = 300
+@export var health = 100
+@export var curr_health = health
+
 var dead = false
 
 @export var score = 1 :
@@ -16,10 +18,8 @@ var dead = false
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
-		var move_x = Input.get_axis("move_left", "move_right")
-		var move_y = Input.get_axis("move_up", "move_down")
-		velocity.x = move_toward(velocity.x, move_x * speed, acceleration * delta)
-		velocity.y = move_toward(velocity.y, move_y * speed, acceleration * delta)
+		var move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		velocity = move_dir * speed
 		send_data.rpc(global_position, velocity)
 	move_and_slide()
 
@@ -38,7 +38,20 @@ func setup(player_data: Statics.PlayerData):
 	set_multiplayer_authority(player_data.id)
 	multiplayer_spawner.set_multiplayer_authority(player_data.id)
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
+	
+func receive_dmg(dmg: int):
+	curr_health =- dmg
+	if curr_health == 0:
+		kill()
 
+func kill():
+	if dead:
+		return
+	dead = true
+	$Graphics/Alive.hide()
+	$Graphics/Dead.show()
+	z_index = -1	
+	
 @rpc("authority", "call_local", "reliable")
 func test(name):
 	var message = "test " + name
