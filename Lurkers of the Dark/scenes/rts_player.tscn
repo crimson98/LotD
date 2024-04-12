@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dplu221g2unkm"]
+[gd_scene load_steps=4 format=3 uid="uid://dplu221g2unkm"]
 
 [ext_resource type="Script" path="res://scenes/RTSPlayer.gd" id="1_h475b"]
 [ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/zombie.tscn" id="2_pqxl4"]
+[ext_resource type="Script" path="res://scenes/rtscamera.gd" id="3_8updw"]
 
 [node name="RTSPlayer" type="Node2D"]
+scale = Vector2(1e-05, 0.456272)
 script = ExtResource("1_h475b")
 zombie_scene = ExtResource("2_pqxl4")
 
@@ -11,3 +13,7 @@ zombie_scene = ExtResource("2_pqxl4")
 spawn_path = NodePath(".")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+
+[node name="RtsCamera" type="Camera2D" parent="."]
+position = Vector2(300000, 5.72205e-06)
+script = ExtResource("3_8updw")
