@@ -35,7 +35,7 @@ func kill():
 #	name = str(player_data.id)
 #	set_multiplayer_authority(player_data.id)
 
-@rpc
-func send_data(pos: Vector2, vel: Vector2):
-	global_position = lerp(global_position, pos, 0.75)
-	velocity = lerp(velocity, vel, 0.75)
+#@rpc
+#func send_data(pos: Vector2, vel: Vector2):
+#	global_position = lerp(global_position, pos, 0.75)
+#	velocity = lerp(velocity, vel, 0.75)

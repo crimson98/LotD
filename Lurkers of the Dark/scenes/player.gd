@@ -16,7 +16,7 @@ var dead = false
 		score = value
 		Debug.log("Player %s score %d" % [name, score])
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_multiplayer_authority():
 		var move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		velocity = move_dir * speed
