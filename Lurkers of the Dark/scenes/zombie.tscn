@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://rgj82y1j3a6o"]
+[gd_scene load_steps=6 format=3 uid="uid://rgj82y1j3a6o"]
 
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_6ixc6"]
 [ext_resource type="Script" path="res://scenes/zombie.gd" id="1_m41g3"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a0iin"]
-radius = 64.0
-height = 128.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_6dea2"]
+radius = 80.025
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xmo00"]
+radius = 95.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n7l6q"]
+radius = 567.631
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
@@ -13,7 +18,7 @@ collision_mask = 3
 script = ExtResource("1_m41g3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_a0iin")
+shape = SubResource("CircleShape2D_6dea2")
 
 [node name="Graphics" type="Node2D" parent="."]
 
@@ -26,6 +31,16 @@ modulate = Color(0.87451, 0.529412, 0, 1)
 z_index = -1
 texture = ExtResource("1_6ixc6")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, -70)
-collision_mask = 3
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_xmo00")
+
+[node name="Detection_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area"]
+shape = SubResource("CircleShape2D_n7l6q")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Detection_Area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_Area" to="." method="_on_detection_area_body_exited"]

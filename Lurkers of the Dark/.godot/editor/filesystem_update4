@@ -1,10 +1,2 @@
-res://scenes/rts_player.tscn
-res://scenes/lobby.tscn
 res://scenes/zombie.tscn
-res://scenes/player.tscn
-res://scenes/main.tscn
-res://autoloads/game.tscn
-res://scenes/rtscamera.gd
 res://scenes/zombie.gd
-res://scenes/RTSPlayer.gd
-res://scenes/main.gd

@@ -22,13 +22,13 @@ position = Vector2(801, 371)
 position = Vector2(210, 354)
 
 [node name="Zombie" parent="." instance=ExtResource("4_kxwsq")]
-position = Vector2(567.237, 236.843)
+position = Vector2(1447, 956)
 
 [node name="img" type="Node2D" parent="."]
 visibility_layer = 4
 
 [node name="LotDimg" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(574, 323)
-scale = Vector2(1.9219, 1.48372)
+position = Vector2(836, 530)
+scale = Vector2(2.83871, 2.46512)
 texture = ExtResource("5_qtwuu")

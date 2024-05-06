@@ -50,7 +50,10 @@ func kill():
 	dead = true
 	$Graphics/Alive.hide()
 	$Graphics/Dead.show()
-	z_index = -1	
+	z_index = -1
+
+func shooter_player():
+	pass	
 	
 @rpc("authority", "call_local", "reliable")
 func test(name):

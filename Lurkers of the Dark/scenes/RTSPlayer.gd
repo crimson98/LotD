@@ -46,6 +46,9 @@ func spawner(spawn_object):
 		var obj = spawn_object.instance()
 		obj.position = get_global_mouse_position()
 		add_child(obj)
+		
+func player():
+	pass
 
 @rpc("authority", "call_local", "reliable")
 func test(name):
