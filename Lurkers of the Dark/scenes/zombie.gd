@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var move_speed = 100
-var health = 100
+var move_speed = 50
+@export var health = 100
 var damage = 10
 
 var dead = false
@@ -27,6 +27,7 @@ func _physics_process(delta):
 
 func _on_detection_area_body_entered(body):
 	if body.has_method("shooter_player"):
+		print("ENTERED")
 		player_in_area = true
 		player = body
 
