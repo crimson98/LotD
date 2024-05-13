@@ -1,7 +1,8 @@
-res://scenes/lobby.tscn
 res://scenes/zombie.tscn
+res://scenes/zombie.gd
+res://scenes/lobby.tscn
 res://scenes/main.tscn
 res://scenes/rts_player.tscn
 res://autoloads/game.tscn
 res://scenes/player.tscn
-res://scenes/zombie.gd
+res://scenes/player.gd
