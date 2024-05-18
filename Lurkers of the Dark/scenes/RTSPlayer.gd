@@ -8,7 +8,7 @@ var spawn_points := []
 @export var score = 1 :
 	set(value):
 		score = value
-		Debug.log("Player %s score %d" % [name, score])
+		# Debug.log("Player %s score %d" % [name, score])
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 #	for child in get_children():

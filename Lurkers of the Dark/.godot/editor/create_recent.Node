@@ -1,4 +1,10 @@
-Node2D
-Camera2D
-Marker2D
 RayCast2D
+Node2D
+Label
+CollisionShape2D
+Area2D
+CharacterBody2D
+Marker2D
+Timer
+Sprite2D
+Camera2D

@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgyx5nfep28xe"]
+
+[ext_resource type="Script" path="res://scenes/raycast_weapon.gd" id="1_t14e2"]
+[ext_resource type="Texture2D" uid="uid://d1352lym3gnye" path="res://assets/shotgun(1).svg" id="2_cpqdh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l2bk"]
+size = Vector2(220, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w20rk"]
+radius = 15.802
+
+[node name="RaycastWeapon" type="CharacterBody2D"]
+script = ExtResource("1_t14e2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(100, 0)
+shape = SubResource("RectangleShape2D_6l2bk")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="OnHand" type="Sprite2D" parent="Graphics"]
+position = Vector2(124, 0)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_cpqdh")
+
+[node name="PickArea" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 259
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickArea"]
+position = Vector2(101, 0)
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_w20rk")
+
+[node name="ROF" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ReloadTimer" type="Timer" parent="."]
+
+[node name="VanishTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="RaycastsNode" type="Node2D" parent="."]
+
+[node name="Pellet1" type="RayCast2D" parent="RaycastsNode"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+
+[node name="Pellet2" type="RayCast2D" parent="RaycastsNode"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+
+[node name="Pellet3" type="RayCast2D" parent="RaycastsNode"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+
+[node name="Pellet4" type="RayCast2D" parent="RaycastsNode"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+
+[node name="Pellet5" type="RayCast2D" parent="RaycastsNode"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+
+[node name="Pellet6" type="RayCast2D" parent="RaycastsNode"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+
+[connection signal="body_entered" from="PickArea" to="." method="_on_pick_area_body_entered"]
+[connection signal="body_exited" from="PickArea" to="." method="_on_pick_area_body_exited"]
+[connection signal="timeout" from="ROF" to="." method="_on_rof_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="VanishTimer" to="." method="_on_vanish_timer_timeout"]
