@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://8d3ys4aw51lk" path="res://scenes/player.tscn" id="2_jyiyy"]
 [ext_resource type="PackedScene" uid="uid://dplu221g2unkm" path="res://scenes/rts_player.tscn" id="3_gr287"]
-[ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/zombie.tscn" id="4_kxwsq"]
+[ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/units/zombie.tscn" id="4_kxwsq"]
 [ext_resource type="Texture2D" uid="uid://cd2d3kdi0v4u6" path="res://assets/LotDimg.png" id="5_qtwuu"]
 [ext_resource type="PackedScene" uid="uid://dgyx5nfep28xe" path="res://scenes/raycast_weapon.tscn" id="6_8m1lb"]
 
@@ -22,14 +22,17 @@ position = Vector2(801, 371)
 [node name="PlayerB" type="Marker2D" parent="SpawnMarker"]
 position = Vector2(210, 354)
 
+[node name="Zombie" parent="." instance=ExtResource("4_kxwsq")]
+position = Vector2(1447, 956)
+
 [node name="img" type="Node2D" parent="."]
 visibility_layer = 4
 
 [node name="LotDimg" type="Sprite2D" parent="."]
 visible = false
 show_behind_parent = true
-position = Vector2(574, 323)
-scale = Vector2(1.9219, 1.48372)
+position = Vector2(836, 530)
+scale = Vector2(2.83871, 2.46512)
 texture = ExtResource("5_qtwuu")
 
 [node name="RaycastWeapon" parent="." instance=ExtResource("6_8m1lb")]

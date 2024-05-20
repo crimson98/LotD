@@ -1,9 +1,13 @@
 extends CharacterBody2D
 
+signal health_changed(value)
+
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 @onready var gun_position= $GunPos
 @onready var ammo_counter= $AmmoCounter
+@onready var gui: CanvasLayer = $GUI
+
 @export var bullet_scene: PackedScene
 @export var speed = 200
 @export var health = 100
@@ -13,11 +17,32 @@ extends CharacterBody2D
 var dead = false
 var pickable_weapons_in_range= []
 var weapon_in_hand: Node2D = null
+var max_health = 100
+@export var health = 100:
+	get:
+		return health
+	set(val):
+		health = max(val, 0)
+		health_changed.emit(health)
+		if health <= 0:
+			dead = true
+
+@export var dead = false:
+	get:
+		return dead
+	set(val):
+		dead = val
+
 
 @export var score = 1 :
 	set(value):
 		score = value
 		# Debug.log("Player %s score %d" % [name, score])
+
+
+func _ready():
+	gui.update_health(health)
+	health_changed.connect(gui.update_health)
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -32,6 +57,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta):
 	Debug.log(pickable_weapons_in_range)
+
 
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
@@ -55,6 +81,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("fire") and weapon_in_hand!= null:
 		weapon_in_hand.fire()
+
 
 func setup(player_data: Statics.PlayerData):
 	name = str(player_data.id)
@@ -89,6 +116,7 @@ func receive_dmg(dmg: int):
 	curr_health =- dmg
 	if curr_health <= 0:
 		kill()
+	
 
 func kill():
 	if dead:
@@ -96,8 +124,18 @@ func kill():
 	dead = true
 	$Graphics/Alive.hide()
 	$Graphics/Dead.show()
-	z_index = -1	
-	
+	z_index = -1
+
+
+func take_damage(damage):
+	if is_multiplayer_authority():
+		health -= damage
+
+
+func shooter_player():
+	pass	
+
+
 @rpc("authority", "call_local", "reliable")
 func test(name):
 	var message = "test " + name
@@ -105,6 +143,7 @@ func test(name):
 	var sender_player = Game.get_player(sender_id)
 	# Debug.log(message)
 	# Debug.log(sender_player.name)
+
 
 @rpc
 func send_data(pos: Vector2, vel: Vector2, look: Vector2):
