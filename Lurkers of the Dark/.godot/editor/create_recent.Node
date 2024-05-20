@@ -1,6 +1,8 @@
+MarginContainer
+ProgressBar
+CanvasLayer
 MultiplayerSynchronizer
 Timer
-ProgressBar
 CollisionShape2D
 Area2D
 Node2D

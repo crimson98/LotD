@@ -1,20 +1,25 @@
 extends CharacterBody2D
 
+signal health_changed(value)
+
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
+@onready var gui: CanvasLayer = $GUI
 
 @export var bullet_scene: PackedScene
 
 @export var speed = 200
+var max_health = 100
 @export var health = 100:
 	get:
 		return health
 	set(val):
 		health = max(val, 0)
+		health_changed.emit(health)
 		if health <= 0:
 			dead = true
 
-var dead = false:
+@export var dead = false:
 	get:
 		return dead
 	set(val):
@@ -26,6 +31,10 @@ var dead = false:
 		score = value
 		Debug.log("Player %s score %d" % [name, score])
 
+
+func _ready():
+	gui.update_health(health)
+	health_changed.connect(gui.update_health)
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():

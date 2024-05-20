@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://i6idbut7keno"]
+
+[ext_resource type="Script" path="res://ui/gui.gd" id="1_hx1ux"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_hx1ux")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 30)
+offset_top = 566.0
+offset_right = 454.0
+offset_bottom = 648.0
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer"]
+modulate = Color(0, 0.572549, 0.121569, 1)
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+show_percentage = false
