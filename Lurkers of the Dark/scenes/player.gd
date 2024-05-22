@@ -10,11 +10,9 @@ signal health_changed(value)
 
 @export var bullet_scene: PackedScene
 @export var speed = 200
-@export var health = 100
 @export var curr_health = health
 @export var look_direction = Vector2.ZERO
 
-var dead = false
 var pickable_weapons_in_range= []
 var weapon_in_hand: Node2D = null
 var max_health = 100

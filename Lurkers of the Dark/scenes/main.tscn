@@ -22,9 +22,6 @@ position = Vector2(801, 371)
 [node name="PlayerB" type="Marker2D" parent="SpawnMarker"]
 position = Vector2(210, 354)
 
-[node name="Zombie" parent="." instance=ExtResource("4_kxwsq")]
-position = Vector2(1447, 956)
-
 [node name="img" type="Node2D" parent="."]
 visibility_layer = 4
 
@@ -56,5 +53,5 @@ position = Vector2(36, -177)
 collision_layer = 16
 
 [node name="Zombie3" parent="." instance=ExtResource("4_kxwsq")]
-position = Vector2(-160, 274)
+position = Vector2(-160, 583)
 collision_layer = 16
