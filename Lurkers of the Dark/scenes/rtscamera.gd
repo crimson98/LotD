@@ -8,8 +8,8 @@ func _process(delta):
 
 	# Get the size of the viewport
 	var screen_size = get_viewport_rect().size
-	print(screen_size)
-	print(self.global_position)
+	#print(screen_size)
+	#print(self.global_position)
 	# Set a margin for mouse movement
 	var margin = 50
 

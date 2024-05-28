@@ -5,7 +5,6 @@ signal health_changed(value)
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 @onready var gun_position= $GunPos
-@onready var ammo_counter= $AmmoCounter
 @onready var gui: CanvasLayer = $GUI
 
 @export var bullet_scene: PackedScene
@@ -14,7 +13,7 @@ signal health_changed(value)
 @export var look_direction = Vector2.ZERO
 
 var pickable_weapons_in_range= []
-var weapon_in_hand: Node2D = null
+@onready var weapon_in_hand: Node2D = null
 var max_health = 100
 @export var health = 100:
 	get:
@@ -53,8 +52,8 @@ func _physics_process(delta: float) -> void:
 	# funny thing, it still works even if you are outside the window
 	
 
-func _process(_delta):
-	Debug.log(pickable_weapons_in_range)
+# func _process(_delta):
+	# Debug.log(pickable_weapons_in_range)
 
 
 func _input(event: InputEvent) -> void:
@@ -67,18 +66,18 @@ func _input(event: InputEvent) -> void:
 			# triggers syncronizer
 			# score += 1
 	
-	if event.is_action_pressed("interact") and len(pickable_weapons_in_range)> 0:
-		_pick_up_weapon.rpc()
-		# if weapon_in_hand!= null:
-			# ammo_counter.text= str(weapon_in_hand.current_clip) + "/" + str(weapon_in_hand.current_ammo)
+		if event.is_action_pressed("interact") and len(pickable_weapons_in_range)> 0:
+			_pick_up_weapon.rpc()
+
+		if event.is_action_pressed("drop_weapon") and weapon_in_hand!= null:
+			_drop_weapon.rpc()
 		
-	if event.is_action_pressed("drop_weapon") and weapon_in_hand!= null:
-		_drop_weapon.rpc()
-		# if weapon_in_hand== null:
-			# ammo_counter.text= ""
-	
-	if event.is_action_pressed("fire") and weapon_in_hand!= null:
-		weapon_in_hand.fire()
+		if event.is_action_pressed("fire") and weapon_in_hand!= null:
+			weapon_in_hand.fire()
+			gui.update_ammo(weapon_in_hand.get_current_ammo())
+		
+		if event.is_action_pressed("reload") and weapon_in_hand!= null:
+			gui.update_ammo(await weapon_in_hand.reload())
 
 
 func setup(player_data: Statics.PlayerData):
@@ -87,28 +86,36 @@ func setup(player_data: Statics.PlayerData):
 	multiplayer_spawner.set_multiplayer_authority(player_data.id)
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
 
-func _update_ammo_counter():
-	if weapon_in_hand!= null:
-		ammo_counter.text= str(weapon_in_hand.current_clip) + "/" + str(weapon_in_hand.current_ammo)
+# func _update_ammo_counter():
+	# if weapon_in_hand!= null:
+		# ammo_counter.text= str(weapon_in_hand.current_clip) + "/" + str(weapon_in_hand.current_ammo)
 
 @rpc("any_peer", "call_local", "reliable")
 func _pick_up_weapon():
+	_drop_weapon()
 	weapon_in_hand= pickable_weapons_in_range.pop_front()
 	if weapon_in_hand!= null:
 		weapon_in_hand.pick_up.rpc()
 		gun_position.add_child(weapon_in_hand)
 		weapon_in_hand.position= Vector2.ZERO
-	# this is giving some problems
+		weapon_in_hand.empty.connect(_weapon_empty)
+		gui.update_ammo(weapon_in_hand.get_current_ammo())
 
 @rpc("any_peer", "call_local", "reliable")
 func _drop_weapon():
 	if weapon_in_hand!= null:
+		weapon_in_hand.empty.disconnect(_weapon_empty)
 		gun_position.remove_child(weapon_in_hand)
 		get_parent().add_child(weapon_in_hand)
 		var throw_direction= get_global_mouse_position() - global_position
 		if is_multiplayer_authority():
 			weapon_in_hand.drop.rpc(gun_position.global_position, throw_direction.normalized())
 		weapon_in_hand= null
+
+func _weapon_empty():
+	if weapon_in_hand!= null: 
+		weapon_in_hand.vanish.rpc()
+		_drop_weapon.rpc()
 
 func receive_dmg(dmg: int):
 	curr_health =- dmg

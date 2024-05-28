@@ -33,11 +33,10 @@ scale = Vector2(2.83871, 2.46512)
 texture = ExtResource("5_qtwuu")
 
 [node name="RaycastWeapon" parent="." instance=ExtResource("6_8m1lb")]
-position = Vector2(186, 154)
-collision_layer = 16
+position = Vector2(392, 129)
 
 [node name="Zombie" parent="." instance=ExtResource("4_kxwsq")]
-position = Vector2(567.237, 236.843)
+position = Vector2(215, -433)
 collision_layer = 16
 
 [node name="Zombie4" parent="." instance=ExtResource("4_kxwsq")]
@@ -45,13 +44,25 @@ position = Vector2(608, -625)
 collision_layer = 16
 
 [node name="Zombie5" parent="." instance=ExtResource("4_kxwsq")]
-position = Vector2(975, -197)
+position = Vector2(1191, -641)
 collision_layer = 16
 
 [node name="Zombie2" parent="." instance=ExtResource("4_kxwsq")]
-position = Vector2(36, -177)
+position = Vector2(-269, -485)
 collision_layer = 16
 
 [node name="Zombie3" parent="." instance=ExtResource("4_kxwsq")]
 position = Vector2(-160, 583)
 collision_layer = 16
+
+[node name="RaycastWeapon2" parent="." instance=ExtResource("6_8m1lb")]
+position = Vector2(1450, 348)
+
+[node name="RaycastWeapon3" parent="." instance=ExtResource("6_8m1lb")]
+position = Vector2(507, 440)
+
+[node name="RaycastWeapon4" parent="." instance=ExtResource("6_8m1lb")]
+position = Vector2(1129, 40)
+
+[node name="RaycastWeapon5" parent="." instance=ExtResource("6_8m1lb")]
+position = Vector2(805, 408)

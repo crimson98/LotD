@@ -5,14 +5,30 @@
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_hx1ux")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="HealthMargin" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(0, 30)
-offset_top = 566.0
+offset_top = 532.0
 offset_right = 454.0
-offset_bottom = 648.0
+offset_bottom = 614.0
 
-[node name="HealthBar" type="ProgressBar" parent="MarginContainer"]
+[node name="HealthBar" type="ProgressBar" parent="HealthMargin"]
 modulate = Color(0, 0.572549, 0.121569, 1)
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 show_percentage = false
+
+[node name="AmmoMargin" type="MarginContainer" parent="."]
+offset_top = 605.0
+offset_right = 454.0
+offset_bottom = 645.0
+
+[node name="AmmoCounter" type="Label" parent="."]
+top_level = true
+offset_left = 20.0
+offset_top = 614.0
+offset_right = 54.0
+offset_bottom = 637.0
+auto_translate = false
+text = "hola"
+horizontal_alignment = 2
+vertical_alignment = 2

@@ -33,12 +33,6 @@ replication_config = SubResource("SceneReplicationConfig_8jyo0")
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("4_4p8xx")
 
-[node name="AmmoCounter" type="Label" parent="Camera2D"]
-offset_right = 40.0
-offset_bottom = 23.0
-horizontal_alignment = 2
-vertical_alignment = 2
-
 [node name="Graphics" type="Node2D" parent="."]
 
 [node name="LongWeapon" type="Sprite2D" parent="Graphics"]

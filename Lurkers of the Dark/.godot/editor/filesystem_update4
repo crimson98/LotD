@@ -1,6 +1,7 @@
+res://scenes/raycast_weapon.tscn
+res://scenes/raycast_weapon.gd
 res://scenes/main.tscn
-res://scenes/lobby.tscn
-res://scenes/units/zombie.tscn
-res://ui/gui.tscn
-res://scenes/player.gd
 res://scenes/player.tscn
+res://ui/gui.tscn
+res://scenes/rtscamera.gd
+res://scenes/player.gd

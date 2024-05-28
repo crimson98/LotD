@@ -2,13 +2,14 @@ extends CharacterBody2D
 
 var MAX_SPD= 1000
 var SPD_DAMP= 850
-
-var p_reload= true
-var clip = 2
-var ammo= 6
 var fireable= true
-@onready var cone_deg= 10
 
+@onready var clip= 17
+@onready var ammo= 30
+@onready var burst= 3
+@onready var p_reload= false
+
+@onready var cone_deg= 10
 @onready var fire_rate: Timer= $ROF
 @onready var reload_time: Timer= $ReloadTimer
 @onready var vanish_time: Timer= $VanishTimer
@@ -19,9 +20,10 @@ var fireable= true
 @export var move_dir= Vector2.ZERO
 @export var speed= 0
 @export var pickable = true
-@export var burst= 1
-@export var current_clip = clip
-@export var current_ammo = ammo
+@onready var current_clip = clip
+@onready var current_ammo = ammo
+
+signal empty
 
 # func _process(delta):
 	# if pickable:
@@ -36,6 +38,9 @@ var fireable= true
 func _ready():
 	for _pellet in raycast_cluster.get_children():
 		_pellet.rotate(deg_to_rad(rng.randf_range(-cone_deg, cone_deg)))
+	
+	set_collision_layer_value(16, true)
+	set_collision_mask_value(0, true)
 
 func _physics_process(delta):
 	if speed >0:
@@ -44,18 +49,21 @@ func _physics_process(delta):
 		speed-= SPD_DAMP * delta
 
 func partial_reload():
+	Debug.log("partial reload")
 	var ammo_to_reload= min(clip - current_clip, current_ammo)
 	
 	current_clip+= ammo_to_reload
 	current_ammo-= ammo_to_reload
 
 func total_reload():
+	Debug.log("total reload")
 	var ammo_to_reload= min(clip, current_ammo)
 	
 	current_clip= ammo_to_reload
 	current_ammo-= ammo_to_reload
 
 func fire():
+	Debug.log("fire")
 	# instantiate some raycasts
 	# get the colissions
 	# trigger damage on colissions
@@ -63,22 +71,32 @@ func fire():
 	# maybe check if fireable on _process
 	
 	if fireable:
-		current_clip-= min(burst, current_clip)
 		fireable= false
+		current_clip-= min(burst, current_clip)
 		fire_rate.start()
 		
 		for _pellet in raycast_cluster.get_children():
 			_pellet.rotation= deg_to_rad(rng.randf_range(-cone_deg, cone_deg))
+	
+	return get_current_ammo()
 
 func reload():
+	Debug.log("reload")
 	# maybe check if fireable on _process
-	
 	if fireable: 
 		fireable= false
+		Debug.log("reload_timer_start")
 		reload_time.start()
+	
+	await reload_time.timeout
+	return get_current_ammo()
+
+func get_current_ammo():
+	return str(current_clip) + "/" + str(current_ammo)
 
 @rpc("any_peer", "call_local", "reliable")
 func pick_up():
+	Debug.log("pick up")
 	pickable = false
 	$PickArea.set_monitoring(false)
 	get_parent().remove_child(self)
@@ -89,6 +107,7 @@ func pick_up():
 
 @rpc("any_peer", "call_local", "reliable")
 func drop(position: Vector2= global_position, direction: Vector2= Vector2.ZERO):
+	Debug.log("drop")
 	# throw a rpc to update the state of the gun to other players
 	# move gun according to direction 
 	# $Graphics/Dropped.show()
@@ -99,19 +118,25 @@ func drop(position: Vector2= global_position, direction: Vector2= Vector2.ZERO):
 	$PickArea.set_monitoring(true)
 	pickable= true
 
+@rpc("any_peer", "call_local", "reliable")
 func vanish():
+	Debug.log("vanish")
+	pickable= false
+	fireable= false
 	vanish_time.start()
+	await vanish_time.timeout
+	queue_free()
 
 func _on_rof_timeout():
-	if current_ammo == 0 and current_clip == 0:
-		pickable= false
-		fireable= false
-		drop()
-		vanish()
+	if current_ammo + current_clip == 0:
+		Debug.log("current clip: " + str(current_clip) + "current_ammo: " + str(current_ammo))
+		empty.emit()
+		$PickArea.set_monitoring(false)
 	else: 
 		fireable= true
 
 func _on_reload_timer_timeout():
+	Debug.log("reload timer timeout")
 	if p_reload:
 		partial_reload()
 	else: 
@@ -119,8 +144,12 @@ func _on_reload_timer_timeout():
 	fireable= true
 
 func _on_vanish_timer_timeout():
-	if is_instance_valid(self):
-		queue_free()
+	_delete_self.rpc()
+
+@rpc("any_peer", "call_local", "reliable")
+func _delete_self():
+	Debug.log("delete self")
+	queue_free()
 
 @rpc("any_peer", "call_local", "reliable")
 func _on_pick_area_body_entered(body):

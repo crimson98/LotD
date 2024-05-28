@@ -10,6 +10,7 @@ size = Vector2(220, 20)
 radius = 15.802
 
 [node name="RaycastWeapon" type="CharacterBody2D"]
+collision_layer = 16
 script = ExtResource("1_t14e2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -35,11 +36,14 @@ shape = SubResource("CircleShape2D_w20rk")
 
 [node name="ROF" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="VanishTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
+one_shot = true
 
 [node name="RaycastsNode" type="Node2D" parent="."]
 
