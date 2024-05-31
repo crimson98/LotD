@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://7sqyhl1v6fdo"]
+
+[ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/units/zombie.tscn" id="1_utgmf"]
+[ext_resource type="Script" path="res://scenes/units/basic_zombie.gd" id="2_p2qse"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0mm5k"]
+resource_local_to_scene = true
+radius = 128.141
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s61i2"]
+resource_local_to_scene = true
+radius = 567.631
+
+[node name="BasicZombie" instance=ExtResource("1_utgmf")]
+script = ExtResource("2_p2qse")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_0mm5k")
+
+[node name="CollisionShape2D" parent="Detection_Area" index="0"]
+shape = SubResource("CircleShape2D_s61i2")
+
+[node name="Alive" parent="Graphics" index="0"]
+modulate = Color(1, 1, 0, 1)

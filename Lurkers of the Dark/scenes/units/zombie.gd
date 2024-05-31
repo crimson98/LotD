@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Zombie
 
 @export var dead = false:
 	get:
@@ -6,7 +7,7 @@ extends CharacterBody2D
 	set(val):
 		dead = val
 		
-@export var health = 100:
+@export var health = 0:
 	get:
 		return health
 	set(val):
@@ -15,9 +16,9 @@ extends CharacterBody2D
 			dead = true
 		update_health()
 
-var move_speed = 200
-var damage = 10
-@onready var attack_cooldown = $Attack_Cooldown
+var move_speed
+var damage
+@onready var attack_cooldown
 
 var player_in_area = false
 var players = []
@@ -26,7 +27,7 @@ var players_being_attacked = []
 
 
 func _ready():
-	dead = false
+	pass
 
 
 func _physics_process(delta):
@@ -74,10 +75,9 @@ func _on_hitbox_body_exited(body):
 
 func attack_player():
 	if player_in_attack_range and attack_cooldown.is_stopped():
-		players_being_attacked[0].health -= 20
+		players_being_attacked[0].health -= damage
 		attack_cooldown.start()
 	
-
 
 func take_damage(damage):
 	if is_multiplayer_authority():

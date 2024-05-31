@@ -1,5 +1,6 @@
-res://scenes/lobby.tscn
 res://scenes/units/zombie.tscn
+res://scenes/units/heavy_zombie.tscn
+res://scenes/units/basic_zombie.tscn
+res://scenes/lobby.tscn
 res://scenes/main.tscn
-res://scenes/player.tscn
-res://ui/gui.tscn
+res://scenes/rts_player.tscn
