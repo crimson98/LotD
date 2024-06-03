@@ -7,7 +7,7 @@ class_name Zombie
 	set(val):
 		dead = val
 		
-@export var health = 0:
+@export var health = 10:
 	get:
 		return health
 	set(val):
