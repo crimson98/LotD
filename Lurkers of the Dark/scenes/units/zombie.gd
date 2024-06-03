@@ -14,6 +14,7 @@ class_name Zombie
 		health = max(val, 0)
 		if health <= 0:
 			dead = true
+			kill()
 		update_health()
 
 var move_speed
@@ -31,6 +32,9 @@ func _ready():
 
 
 func _physics_process(delta):
+	if dead:
+		return
+		
 	zombie_movement()
 	attack_player()
 	
@@ -82,7 +86,17 @@ func attack_player():
 func take_damage(damage):
 	if is_multiplayer_authority():
 		health -= damage
-					
+
+
+func kill():
+	if dead:
+		return
+	dead = true
+	$Graphics/Dead.show()
+	$Graphics/Alive.hide()
+	$CollisionShape2D.disabled = true
+	z_index = -1
+
 
 func update_health():
 	var health_bar = $HealthBar

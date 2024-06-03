@@ -21,4 +21,7 @@ shape = SubResource("CircleShape2D_0mm5k")
 shape = SubResource("CircleShape2D_s61i2")
 
 [node name="Alive" parent="Graphics" index="0"]
-modulate = Color(1, 1, 0, 1)
+modulate = Color(0, 0.759174, 0, 1)
+
+[node name="Dead" parent="Graphics" index="1"]
+modulate = Color(0.154876, 0.154876, 0.154876, 1)

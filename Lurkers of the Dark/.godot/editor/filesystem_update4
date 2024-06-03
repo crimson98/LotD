@@ -1,6 +1,8 @@
 res://scenes/units/zombie.tscn
-res://scenes/units/heavy_zombie.tscn
+res://scenes/units/zombie.gd
 res://scenes/units/basic_zombie.tscn
+res://scenes/units/heavy_zombie.tscn
+res://scenes/units/heavy_zombie.gd
 res://scenes/lobby.tscn
 res://scenes/main.tscn
 res://scenes/rts_player.tscn

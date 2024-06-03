@@ -2,7 +2,7 @@ extends Zombie
 class_name HeavyZombie
 
 var attacking = 0
-var attack_windup
+var attack_windup 
 
 func _ready():
 	dead = false
