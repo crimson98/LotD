@@ -154,12 +154,12 @@ func _delete_self():
 @rpc("any_peer", "call_local", "reliable")
 func _on_pick_area_body_entered(body):
 	Debug.log(body.get_collision_layer())
-	if body.get_collision_layer()== 2:
+	if body.has_method("shooter_player") and body.get_collision_layer()== 2:
 		body.pickable_weapons_in_range.append(self)
 
 @rpc("any_peer", "call_local", "reliable")
 func _on_pick_area_body_exited(body):
 	Debug.log(body.get_collision_layer())
-	if body.get_collision_layer()== 2:
+	if body.has_method("shooter_player") and body.get_collision_layer()== 2:
 		var remove_index= body.pickable_weapons_in_range.find(self)
 		if remove_index >= 0: body.pickable_weapons_in_range.pop_at(remove_index)
