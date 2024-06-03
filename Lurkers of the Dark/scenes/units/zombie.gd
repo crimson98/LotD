@@ -15,7 +15,7 @@ extends CharacterBody2D
 			dead = true
 		update_health()
 
-var move_speed = 150
+var move_speed = 200
 var damage = 10
 @onready var attack_cooldown = $Attack_Cooldown
 
@@ -74,7 +74,9 @@ func _on_hitbox_body_exited(body):
 
 func attack_player():
 	if player_in_attack_range and attack_cooldown.is_stopped():
-		players_being_attacked[0].take_damage(20)
+		players_being_attacked[0].health -= 20
+		attack_cooldown.start()
+	
 
 
 func take_damage(damage):
