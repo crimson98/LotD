@@ -13,7 +13,6 @@ class_name Zombie
 	set(val):
 		health = max(val, 0)
 		if health <= 0:
-			dead = true
 			kill()
 		update_health()
 
@@ -102,7 +101,7 @@ func update_health():
 	var health_bar = $HealthBar
 	health_bar.value = health
 	
-	if health >= 100:
+	if health >= 100 or health <= 0:
 		health_bar.visible = false
 	else:
 		health_bar.visible = true

@@ -22,11 +22,9 @@ func _process(delta):
 
 @rpc("any_peer", "call_local")
 func invoke(mouse_pos) -> void:
-	print("pase por aqui")
 	var zombie_inst = zombie_scene.instantiate()
 	zombie_inst.position = mouse_pos
 	invoked.emit(zombie_inst)
-
 
 
 func _on_Area2D_mouse_entered():

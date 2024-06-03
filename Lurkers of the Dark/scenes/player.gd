@@ -6,6 +6,7 @@ signal health_changed(value)
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 @onready var gun_position= $GunPos
 @onready var gui: CanvasLayer = $GUI
+@onready var game_over_screen: Control = $GameOverScreen/GameOverScreen
 
 @export var bullet_scene: PackedScene
 @export var speed = 200
@@ -22,7 +23,7 @@ var max_health = 100
 		health = max(val, 0)
 		health_changed.emit(health)
 		if health <= 0:
-			dead = true
+			kill()
 
 @export var dead = false:
 	get:
@@ -40,8 +41,11 @@ var max_health = 100
 func _ready():
 	gui.update_health(health)
 	health_changed.connect(gui.update_health)
+	gui.hide()
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	if is_multiplayer_authority():
 		var move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 		velocity = move_dir * speed
@@ -85,6 +89,9 @@ func setup(player_data: Statics.PlayerData):
 	set_multiplayer_authority(player_data.id)
 	multiplayer_spawner.set_multiplayer_authority(player_data.id)
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
+	
+	if multiplayer.get_unique_id() == player_data.id:
+		gui.show()
 
 # func _update_ammo_counter():
 	# if weapon_in_hand!= null:
@@ -127,8 +134,9 @@ func kill():
 	if dead:
 		return
 	dead = true
-	$Graphics/Alive.hide()
-	$Graphics/Dead.show()
+	# $Graphics/Alive.hide()
+	# $Graphics/Dead.show()
+	game_over_screen.show()
 	z_index = -1
 
 
