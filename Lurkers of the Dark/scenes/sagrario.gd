@@ -1,7 +1,7 @@
 extends Area2D
 signal invoked(zombie_scene)
 var entered = false
-var zombie_scene = preload("res://scenes/units/zombie.tscn")
+var zombie_scene = preload("res://scenes/units/basic_zombie.tscn")
 #@export var zombie_scene = PackedScene
 
 #var zombie_in = zombie_scene.instance()
@@ -32,10 +32,8 @@ func invoke(mouse_pos) -> void:
 func _on_Area2D_mouse_entered():
 	entered = true
 	return entered
-	print("mouse entered")
 
 
 func _on_Area2D_mouse_exited():
 	entered = false
 	return entered
-	print("mouse exted")
