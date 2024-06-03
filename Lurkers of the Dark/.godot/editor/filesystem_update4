@@ -6,3 +6,11 @@ res://scenes/units/heavy_zombie.gd
 res://scenes/lobby.tscn
 res://scenes/main.tscn
 res://scenes/rts_player.tscn
+res://scenes/main.tscn
+res://scenes/player.tscn
+res://ui/gui.tscn
+res://scenes/raycast_weapon.tscn
+res://scenes/rts_player.tscn
+res://scenes/sagrario.tscn
+res://scenes/units/zombie.tscn
+res://scenes/raycast_weapon.gd

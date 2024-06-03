@@ -6,11 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://cd2d3kdi0v4u6" path="res://assets/LotDimg.png" id="5_qtwuu"]
 [ext_resource type="PackedScene" uid="uid://7sqyhl1v6fdo" path="res://scenes/units/basic_zombie.tscn" id="5_tj1tm"]
 [ext_resource type="PackedScene" uid="uid://cxsmiih310ffa" path="res://scenes/units/heavy_zombie.tscn" id="6_8n4l4"]
+[ext_resource type="PackedScene" uid="uid://c0l00r4apxia7" path="res://scenes/sagrario.tscn" id="4_38sui"]
+[ext_resource type="Texture2D" uid="uid://cd2d3kdi0v4u6" path="res://assets/LotDimg.png" id="5_qtwuu"]
+[ext_resource type="PackedScene" uid="uid://dgyx5nfep28xe" path="res://scenes/raycast_weapon.tscn" id="6_8m1lb"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ysfbh")
 player_scene = ExtResource("2_jyiyy")
 rts_player = ExtResource("3_gr287")
+sagrario = ExtResource("4_38sui")
 
 [node name="Players" type="Node2D" parent="."]
 
@@ -22,10 +26,23 @@ position = Vector2(801, 371)
 [node name="PlayerB" type="Marker2D" parent="SpawnMarker"]
 position = Vector2(210, 354)
 
+[node name="Sagrary1" type="Marker2D" parent="SpawnMarker"]
+position = Vector2(2432, -280)
+
+[node name="Sagrary2" type="Marker2D" parent="SpawnMarker"]
+position = Vector2(1879, 304)
+
+[node name="Sagrary3" type="Marker2D" parent="SpawnMarker"]
+position = Vector2(1893, 728)
+
+[node name="Sagrary4" type="Marker2D" parent="SpawnMarker"]
+position = Vector2(2642, 418)
+
 [node name="img" type="Node2D" parent="."]
 visibility_layer = 4
 
 [node name="LotDimg" type="Sprite2D" parent="."]
+visible = false
 show_behind_parent = true
 position = Vector2(836, 530)
 scale = Vector2(2.83871, 2.46512)
@@ -36,3 +53,13 @@ position = Vector2(1550, 912)
 
 [node name="HeavyZombie" parent="." instance=ExtResource("6_8n4l4")]
 position = Vector2(520, 1301)
+[node name="RaycastWeapon" parent="." instance=ExtResource("6_8m1lb")]
+position = Vector2(392, 129)
+
+[node name="Sagrarios" type="Node2D" parent="."]
+
+[node name="Zombies" type="Node2D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/units/zombie.tscn")
+spawn_path = NodePath("../Zombies")
