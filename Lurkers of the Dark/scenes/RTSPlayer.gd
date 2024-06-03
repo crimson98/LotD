@@ -1,13 +1,14 @@
 extends Node2D
 
 @export var zombie_scene = PackedScene
-@onready var multiplayer_spawner = $MultiplayerSpawner
-@onready var multiplayer_synchronizer = $MultiplayerSynchronizer
-var spawn_points := []
-
+var sagrario_scene = preload("res://scenes/sagrario.tscn")
 @export var score = 1 :
 	set(value):
 		score = value
+@onready var multiplayer_spawner = $MultiplayerSpawner
+@onready var multiplayer_synchronizer = $MultiplayerSynchronizer
+
+
 		# Debug.log("Player %s score %d" % [name, score])
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -24,14 +25,10 @@ func _input(event: InputEvent) -> void:
 			# spawner will spawn a bullet on every simulated
 			# triggers syncronizer
 			score += 1
+		if event.is_action_pressed("invoke"):
+			invoke()
 
 
-
-func spawn_mob():
-	if spawn_points.size() > 0:
-		var spawn_point = spawn_points[randi() % spawn_points.size()]
-		var mob = zombie_scene.instance()
-		spawn_point.add_child(mob)
 
 
 func setup(player_data: Statics.PlayerData):
@@ -42,7 +39,7 @@ func setup(player_data: Statics.PlayerData):
 
 
 func spawner(spawn_object):
-	if Input.is_action_just_pressed("mouse_click"):
+	if Input.is_action_pressed("mouse_click"):
 		var obj = spawn_object.instance()
 		obj.position = get_global_mouse_position()
 		add_child(obj)
@@ -57,3 +54,13 @@ func test(name):
 	var sender_player = Game.get_player(sender_id)
 	Debug.log(message)
 	Debug.log(sender_player.name)
+
+
+func invoke() -> void:
+	if not sagrario_scene:
+		return
+	var sag_inst = get_parent().get_parent().get_child(5)
+	for i in range(sag_inst.get_child_count()):
+		var sagr = sag_inst.get_child(i)
+		if sagr.entered:
+			sagr.invoke.rpc_id(1, get_global_mouse_position())
