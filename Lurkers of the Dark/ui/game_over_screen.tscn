@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cpv17gifnl671"]
+
+[node name="GameOverScreen" type="CanvasLayer"]
+
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.337255)
+
+[node name="Panel" type="Panel" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = -58.5
+offset_right = 97.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameOverScreen/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.0
+offset_top = 17.5
+offset_right = 44.0
+offset_bottom = 40.5
+grow_horizontal = 2
+text = "Game Over"
+
+[node name="Button" type="Button" parent="GameOverScreen/Panel"]
+layout_mode = 0
+offset_left = 69.5
+offset_top = 66.5
+offset_right = 127.5
+offset_bottom = 97.5
+text = "Restar"
