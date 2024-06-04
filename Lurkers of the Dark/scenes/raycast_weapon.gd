@@ -4,10 +4,11 @@ var MAX_SPD= 1000
 var SPD_DAMP= 850
 var fireable= true
 
-@onready var clip= 17
-@onready var ammo= 30
-@onready var burst= 3
-@onready var p_reload= false
+@onready var clip= 2
+@onready var ammo= 5
+@onready var burst= 1
+@onready var p_reload= true
+@onready var damage= 2
 
 @onready var cone_deg= 10
 @onready var fire_rate: Timer= $ROF
@@ -70,10 +71,15 @@ func fire():
 	
 	# maybe check if fireable on _process
 	
-	if fireable:
+	if fireable and current_clip> 0:
 		fireable= false
 		current_clip-= min(burst, current_clip)
 		fire_rate.start()
+		
+		for pellet in raycast_cluster.get_children():
+			var target= pellet.get_collider()
+			if target and target.has_method("enemy"):
+				target.health-= damage
 		
 		for _pellet in raycast_cluster.get_children():
 			_pellet.rotation= deg_to_rad(rng.randf_range(-cone_deg, cone_deg))

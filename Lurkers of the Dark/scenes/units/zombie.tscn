@@ -7,9 +7,11 @@
 radius = 80.025
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xmo00"]
-radius = 95.0
+resource_local_to_scene = true
+radius = 133.06
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n7l6q"]
+resource_local_to_scene = true
 radius = 567.631
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5tmn3"]
@@ -30,17 +32,6 @@ script = ExtResource("1_m41g3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6dea2")
-
-[node name="Graphics" type="Node2D" parent="."]
-
-[node name="Alive" type="Sprite2D" parent="Graphics"]
-modulate = Color(0.87451, 0.529412, 0, 1)
-texture = ExtResource("1_6ixc6")
-
-[node name="Dead" type="Sprite2D" parent="Graphics"]
-modulate = Color(0.87451, 0.529412, 0, 1)
-z_index = -1
-texture = ExtResource("1_6ixc6")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
@@ -71,6 +62,15 @@ one_shot = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_5tmn3")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Alive" type="Sprite2D" parent="Graphics"]
+texture = ExtResource("1_6ixc6")
+
+[node name="Dead" type="Sprite2D" parent="Graphics"]
+z_index = -1
+texture = ExtResource("1_6ixc6")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

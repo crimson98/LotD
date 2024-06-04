@@ -50,26 +50,34 @@ one_shot = true
 [node name="Pellet1" type="RayCast2D" parent="RaycastsNode"]
 position = Vector2(220, 0)
 target_position = Vector2(1250, 0)
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Pellet2" type="RayCast2D" parent="RaycastsNode"]
 position = Vector2(220, 0)
 target_position = Vector2(1250, 0)
+collision_mask = 3
 
 [node name="Pellet3" type="RayCast2D" parent="RaycastsNode"]
 position = Vector2(220, 0)
 target_position = Vector2(1250, 0)
+collision_mask = 3
 
 [node name="Pellet4" type="RayCast2D" parent="RaycastsNode"]
 position = Vector2(220, 0)
 target_position = Vector2(1250, 0)
+collision_mask = 3
 
 [node name="Pellet5" type="RayCast2D" parent="RaycastsNode"]
 position = Vector2(220, 0)
 target_position = Vector2(1250, 0)
+collision_mask = 3
 
 [node name="Pellet6" type="RayCast2D" parent="RaycastsNode"]
 position = Vector2(220, 0)
 target_position = Vector2(1250, 0)
+collision_mask = 3
 
 [connection signal="body_entered" from="PickArea" to="." method="_on_pick_area_body_entered"]
 [connection signal="body_exited" from="PickArea" to="." method="_on_pick_area_body_exited"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxsmiih310ffa"]
+
+[ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/units/zombie.tscn" id="1_gae3g"]
+[ext_resource type="Script" path="res://scenes/units/heavy_zombie.gd" id="2_m0xg1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5kob"]
+radius = 169.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xonft"]
+resource_local_to_scene = true
+radius = 567.631
+
+[node name="HeavyZombie" instance=ExtResource("1_gae3g")]
+script = ExtResource("2_m0xg1")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_y5kob")
+
+[node name="CollisionShape2D" parent="Detection_Area" index="0"]
+shape = SubResource("CircleShape2D_xonft")
+
+[node name="Attack_Cooldown" parent="." index="4"]
+wait_time = 3.0
+
+[node name="Alive" parent="Graphics" index="0"]
+modulate = Color(0.968587, 5.67943e-06, 7.70092e-07, 1)
+
+[node name="Dead" parent="Graphics" index="1"]
+modulate = Color(0.152941, 0.152941, 0.152941, 1)
+
+[node name="Attack_Windup" type="Timer" parent="." index="7"]
+one_shot = true
