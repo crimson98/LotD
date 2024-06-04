@@ -41,7 +41,7 @@ func _physics_process(delta):
 func zombie_movement():
 	if !dead:
 		$Detection_Area/CollisionShape2D.disabled = false
-		if player_in_area:
+		if len(players) > 0 and player_in_area:
 			position += (players[0].position - position) / move_speed
 		else:
 			pass
@@ -79,6 +79,13 @@ func _on_hitbox_body_exited(body):
 func attack_player():
 	if player_in_attack_range and attack_cooldown.is_stopped():
 		players_being_attacked[0].health -= damage
+		
+		if players_being_attacked[0].dead:
+			players.erase(players_being_attacked[0])
+			
+			if players.is_empty():
+				player_in_area = false
+				
 		attack_cooldown.start()
 	
 

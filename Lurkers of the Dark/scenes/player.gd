@@ -10,12 +10,7 @@ signal health_changed(value)
 
 @export var bullet_scene: PackedScene
 @export var speed = 200
-@export var curr_health = health
 @export var look_direction = Vector2.ZERO
-
-var pickable_weapons_in_range= []
-@onready var weapon_in_hand: Node2D = null
-var max_health = 100
 @export var health = 100:
 	get:
 		return health
@@ -37,6 +32,12 @@ var max_health = 100
 		score = value
 		# Debug.log("Player %s score %d" % [name, score])
 
+var player_id:
+	set(value):
+		player_id = value
+
+@onready var weapon_in_hand: Node2D = null
+var pickable_weapons_in_range= []
 
 func _ready():
 	gui.update_health(health)
@@ -85,6 +86,7 @@ func _input(event: InputEvent) -> void:
 
 
 func setup(player_data: Statics.PlayerData):
+	player_id = player_data.id
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
 	multiplayer_spawner.set_multiplayer_authority(player_data.id)
@@ -125,8 +127,8 @@ func _weapon_empty():
 		_drop_weapon.rpc()
 
 func receive_dmg(dmg: int):
-	curr_health =- dmg
-	if curr_health <= 0:
+	health =- dmg
+	if health <= 0:
 		kill()
 	
 
@@ -136,7 +138,8 @@ func kill():
 	dead = true
 	# $Graphics/Alive.hide()
 	# $Graphics/Dead.show()
-	game_over_screen.show()
+	if multiplayer.get_unique_id() == player_id:
+		game_over_screen.show()
 	z_index = -1
 
 

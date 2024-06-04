@@ -8,7 +8,7 @@ var fireable= true
 @onready var ammo= 5
 @onready var burst= 1
 @onready var p_reload= true
-@onready var damage= 2
+@onready var damage= 10
 
 @onready var cone_deg= 10
 @onready var fire_rate: Timer= $ROF

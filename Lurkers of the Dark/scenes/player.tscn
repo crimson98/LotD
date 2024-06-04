@@ -33,6 +33,7 @@ spawn_path = NodePath(".")
 replication_config = SubResource("SceneReplicationConfig_8jyo0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.3, 0.3)
 script = ExtResource("4_4p8xx")
 
 [node name="Graphics" type="Node2D" parent="."]
