@@ -20,10 +20,16 @@ sagrario = ExtResource("4_38sui")
 [node name="SpawnMarker" type="Node2D" parent="."]
 
 [node name="PlayerA" type="Marker2D" parent="SpawnMarker"]
-position = Vector2(801, 371)
+position = Vector2(-1546, -765)
 
 [node name="PlayerB" type="Marker2D" parent="SpawnMarker"]
-position = Vector2(210, 354)
+position = Vector2(-1049, 1227)
+
+[node name="PlayerC" type="Marker2D" parent="SpawnMarker"]
+position = Vector2(2289, -391)
+
+[node name="PlayerD" type="Marker2D" parent="SpawnMarker"]
+position = Vector2(819, 116)
 
 [node name="Sagrary1" type="Marker2D" parent="SpawnMarker"]
 position = Vector2(2432, -280)
@@ -40,6 +46,11 @@ position = Vector2(2642, 418)
 [node name="img" type="Node2D" parent="."]
 visibility_layer = 4
 
+[node name="Weapons" type="Node2D" parent="."]
+
+[node name="RaycastWeapon" parent="Weapons" instance=ExtResource("6_8m1lb")]
+position = Vector2(392, 129)
+
 [node name="LotDimg" type="Sprite2D" parent="."]
 visible = false
 show_behind_parent = true
@@ -47,18 +58,15 @@ position = Vector2(836, 530)
 scale = Vector2(2.83871, 2.46512)
 texture = ExtResource("5_qtwuu")
 
-[node name="BasicZombie" parent="." instance=ExtResource("5_tj1tm")]
-position = Vector2(1550, 912)
-
-[node name="HeavyZombie" parent="." instance=ExtResource("6_8n4l4")]
-position = Vector2(520, 1301)
-
-[node name="RaycastWeapon" parent="." instance=ExtResource("6_8m1lb")]
-position = Vector2(392, 129)
-
 [node name="Sagrarios" type="Node2D" parent="."]
 
 [node name="Zombies" type="Node2D" parent="."]
+
+[node name="BasicZombie" parent="Zombies" instance=ExtResource("5_tj1tm")]
+position = Vector2(1550, 912)
+
+[node name="HeavyZombie" parent="Zombies" instance=ExtResource("6_8n4l4")]
+position = Vector2(520, 1301)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/units/zombie.tscn")
