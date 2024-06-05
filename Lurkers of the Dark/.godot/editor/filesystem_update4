@@ -1,13 +1,10 @@
+res://scenes/units/zombie.tscn
 res://scenes/main.tscn
 res://scenes/raycast_weapon.tscn
-res://scenes/units/zombie.tscn
 res://scenes/sagrario.tscn
 res://scenes/rts_player.tscn
 res://ui/game_over_screen.tscn
 res://autoloads/game.tscn
 res://scenes/lobby.tscn
 res://scenes/ui/lobby_player.tscn
-res://scenes/player.gd
-res://scenes/units/zombie.gd
 res://scenes/player.tscn
-res://scenes/raycast_weapon.gd
