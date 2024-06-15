@@ -18,11 +18,10 @@ extends Node2D
 @onready var sagrary_2 = $SpawnMarker/Sagrary2
 @onready var sagrary_3 = $SpawnMarker/Sagrary3
 @onready var sagrary_4 = $SpawnMarker/Sagrary4
-var counter1 = 3
+@export var counter1 = 3
 
 
 func _ready() -> void:
-	
 	var playerA = player_scene.instantiate()
 	var playerB = player_scene.instantiate()
 	var playerC = player_scene.instantiate()

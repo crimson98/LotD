@@ -13,7 +13,7 @@ func _ready() -> void:
 	canvas_layer.add_child(container)
 
 
-func log(message: Variant, seconds: float = 2) -> void:
+func log(message: Variant, seconds: float = 10) -> void:
 	if multiplayer.multiplayer_peer is OfflineMultiplayerPeer:
 		print(message)
 	else:

@@ -21,6 +21,7 @@ var thread = null
 
 func add_player(player: Statics.PlayerData) -> void:
 	players.append(player)
+	# Game.players.sort_custom(Game.sort_player_data)
 	players_updated.emit()
 
 
@@ -88,3 +89,6 @@ func _exit_tree():
 	# Wait for thread finish here to handle game exit while the thread is running.
 	thread.wait_to_finish()
 
+func sort_player_data(a: Statics.PlayerData, b: Statics.PlayerData):
+	if a.id < b.id: return true
+	else: return false

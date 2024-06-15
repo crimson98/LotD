@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgyx5nfep28xe"]
+[gd_scene load_steps=6 format=3 uid="uid://dgyx5nfep28xe"]
 
-[ext_resource type="Script" path="res://scenes/raycast_weapon.gd" id="1_t14e2"]
-[ext_resource type="Texture2D" uid="uid://d1352lym3gnye" path="res://assets/shotgun(1).svg" id="2_cpqdh"]
+[ext_resource type="Script" path="res://scenes/weapons/raycast_weapon.gd" id="1_ivyfg"]
+[ext_resource type="Texture2D" uid="uid://d1352lym3gnye" path="res://assets/shotgun(1).svg" id="2_pldat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6l2bk"]
 size = Vector2(220, 20)
@@ -9,9 +9,12 @@ size = Vector2(220, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_w20rk"]
 radius = 15.802
 
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_smioq"]
+
 [node name="RaycastWeapon" type="CharacterBody2D"]
 collision_layer = 16
-script = ExtResource("1_t14e2")
+collision_mask = 19
+script = ExtResource("1_ivyfg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(100, 0)
@@ -23,7 +26,7 @@ shape = SubResource("RectangleShape2D_6l2bk")
 position = Vector2(124, 0)
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_cpqdh")
+texture = ExtResource("2_pldat")
 
 [node name="PickArea" type="Area2D" parent="."]
 collision_layer = 256
@@ -78,6 +81,10 @@ collision_mask = 3
 position = Vector2(220, 0)
 target_position = Vector2(1250, 0)
 collision_mask = 3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamMP3_smioq")
+area_mask = 3
 
 [connection signal="body_entered" from="PickArea" to="." method="_on_pick_area_body_entered"]
 [connection signal="body_exited" from="PickArea" to="." method="_on_pick_area_body_exited"]

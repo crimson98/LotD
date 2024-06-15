@@ -93,6 +93,9 @@ func take_damage(damage):
 	if is_multiplayer_authority():
 		health -= damage
 
+@rpc("any_peer", "call_local")
+func get_damaged(dmg):
+	health -= dmg
 
 func kill():
 	if dead:
