@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxg3324446sub"
+path="res://.godot/imported/rifle-or-shotgun-reload-6787 (mp3cut.net).mp3-7b68cc13fb37fc50cb32e449447e7491.mp3str"
+
+[deps]
+
+source_file="res://assets/rifle-or-shotgun-reload-6787 (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/rifle-or-shotgun-reload-6787 (mp3cut.net).mp3-7b68cc13fb37fc50cb32e449447e7491.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

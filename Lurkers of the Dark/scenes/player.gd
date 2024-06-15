@@ -9,7 +9,9 @@ signal health_changed(value)
 @onready var game_over_screen: Control = $GameOverScreen/GameOverScreen
 
 @export var bullet_scene: PackedScene
-@export var speed = 200
+@export var db_shotgun_scene: PackedScene
+
+@export var speed = 800
 @export var look_direction = Vector2.ZERO
 @export var health = 100:
 	get:
@@ -54,35 +56,29 @@ func _physics_process(delta: float) -> void:
 		send_data.rpc(global_position, velocity, look_direction)
 	move_and_slide()
 	look_at(look_direction)
-	# funny thing, it still works even if you are outside the window
-	
-
-# func _process(_delta):
-	# Debug.log(pickable_weapons_in_range)
-
 
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
-		if event.is_action_pressed("test"):
-			test.rpc(Game.get_current_player().name)
-			var bullet = bullet_scene.instantiate()
-			# spawner will spawn a bullet on every simulated
-			multiplayer_spawner.add_child(bullet, true)
-			# triggers syncronizer
-			# score += 1
-	
 		if event.is_action_pressed("interact") and len(pickable_weapons_in_range)> 0:
-			_pick_up_weapon.rpc()
-
-		if event.is_action_pressed("drop_weapon") and weapon_in_hand!= null:
-			_drop_weapon.rpc()
+			if weapon_in_hand== null:
+				_pick_up_weapon.rpc(get_multiplayer_authority())
+			else:
+				_drop_weapon.rpc(get_multiplayer_authority())
+				_pick_up_weapon.rpc(get_multiplayer_authority())
 		
 		if event.is_action_pressed("fire") and weapon_in_hand!= null:
-			weapon_in_hand.fire()
+			weapon_in_hand.fire.rpc(get_multiplayer_authority())
 			gui.update_ammo(weapon_in_hand.get_current_ammo())
 		
+		if event.is_action_pressed("drop_weapon") and weapon_in_hand!= null:
+			_drop_weapon.rpc(get_multiplayer_authority())
+		
 		if event.is_action_pressed("reload") and weapon_in_hand!= null:
-			gui.update_ammo(await weapon_in_hand.reload())
+			weapon_in_hand.reload.rpc()
+			gui.update_ammo(weapon_in_hand.get_current_ammo())
+		
+		if event.is_action_pressed("call_1"):
+			_spawn_weapon.rpc()
 
 
 func setup(player_data: Statics.PlayerData):
@@ -100,31 +96,47 @@ func setup(player_data: Statics.PlayerData):
 		# ammo_counter.text= str(weapon_in_hand.current_clip) + "/" + str(weapon_in_hand.current_ammo)
 
 @rpc("any_peer", "call_local", "reliable")
-func _pick_up_weapon():
-	_drop_weapon()
+func _spawn_weapon():
+	var spawn_point= position + Vector2(210,0).rotated(global_rotation)
+	var db_shotgun= db_shotgun_scene.instantiate()
+	get_tree().get_root().get_node("Main/Weapons").add_child(db_shotgun)
+	db_shotgun.global_position= spawn_point
+
+@rpc("any_peer", "call_local", "reliable")
+func _pick_up_weapon(caller: int):
+	Debug.log(str(caller) + " wants to pick up a weapon")
 	weapon_in_hand= pickable_weapons_in_range.pop_front()
 	if weapon_in_hand!= null:
-		weapon_in_hand.pick_up.rpc()
+		weapon_in_hand.pick_up(get_multiplayer_authority())
+		weapon_in_hand.get_parent().remove_child(weapon_in_hand)
 		gun_position.add_child(weapon_in_hand)
 		weapon_in_hand.position= Vector2.ZERO
 		weapon_in_hand.empty.connect(_weapon_empty)
+		weapon_in_hand.ammo_change.connect(_update_ammo)
 		gui.update_ammo(weapon_in_hand.get_current_ammo())
 
 @rpc("any_peer", "call_local", "reliable")
-func _drop_weapon():
+func _drop_weapon(caller: int):
+	Debug.log(str(caller) + " wants to drop a weapon")
 	if weapon_in_hand!= null:
 		weapon_in_hand.empty.disconnect(_weapon_empty)
+		weapon_in_hand.ammo_change.disconnect(_update_ammo)
 		gun_position.remove_child(weapon_in_hand)
-		get_parent().add_child(weapon_in_hand)
-		var throw_direction= get_global_mouse_position() - global_position
+		get_tree().get_root().get_node("Main/Weapons").add_child(weapon_in_hand)
 		if is_multiplayer_authority():
-			weapon_in_hand.drop.rpc(gun_position.global_position, throw_direction.normalized())
+			Debug.log(str(get_multiplayer_authority()) + " passed the multiplayer authority test, throwing")
+			var throw_direction= get_global_mouse_position() - global_position
+			weapon_in_hand.drop.rpc(get_multiplayer_authority(), gun_position.global_position, throw_direction.normalized())
 		weapon_in_hand= null
+		gui.clear_gui()
 
 func _weapon_empty():
 	if weapon_in_hand!= null: 
 		weapon_in_hand.vanish.rpc()
-		_drop_weapon.rpc()
+		_drop_weapon.rpc(get_multiplayer_authority())
+
+func _update_ammo():
+	gui.update_ammo(weapon_in_hand.get_current_ammo())
 
 func receive_dmg(dmg: int):
 	health =- dmg

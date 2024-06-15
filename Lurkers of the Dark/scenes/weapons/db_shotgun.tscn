@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://3k73svd5vrrc"]
+
+[ext_resource type="PackedScene" uid="uid://dgyx5nfep28xe" path="res://scenes/weapons/raycast_weapon.tscn" id="1_hb0rt"]
+[ext_resource type="Script" path="res://scenes/weapons/db_shotgun.gd" id="2_mn36m"]
+
+[node name="DBShotgun" instance=ExtResource("1_hb0rt")]
+script = ExtResource("2_mn36m")
+clip = 2
+ammo = 10
+damage = 37
+penetration = 2
+cone_deg = 13
+
+[node name="ReloadTimer" parent="." index="4"]
+wait_time = 1.5

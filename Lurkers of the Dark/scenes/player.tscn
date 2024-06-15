@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://8d3ys4aw51lk"]
+[gd_scene load_steps=10 format=3 uid="uid://8d3ys4aw51lk"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_7q1sy"]
 [ext_resource type="PackedScene" uid="uid://dskjy6yd4quog" path="res://scenes/bullet.tscn" id="2_pyqhq"]
+[ext_resource type="PackedScene" uid="uid://3k73svd5vrrc" path="res://scenes/weapons/db_shotgun.tscn" id="3_qyb3m"]
 [ext_resource type="Script" path="res://scenes/Camera2D.gd" id="4_4p8xx"]
 [ext_resource type="Texture2D" uid="uid://cttfc3ck7ye12" path="res://assets/survivor_long.svg" id="5_t2fjk"]
 [ext_resource type="PackedScene" uid="uid://i6idbut7keno" path="res://ui/gui.tscn" id="5_xrdi7"]
@@ -24,6 +25,7 @@ collision_mask = 259
 safe_margin = 1.0
 script = ExtResource("1_7q1sy")
 bullet_scene = ExtResource("2_pyqhq")
+db_shotgun_scene = ExtResource("3_qyb3m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_m718o")

@@ -1,3 +1,6 @@
+MultiplayerSynchronizer
+RaycastWeapon
+AudioStreamPlayer2D
 Marker2D
 Node2D
 Button
@@ -10,5 +13,3 @@ Timer
 AnimationPlayer
 MultiplayerSpawner
 Sprite2D
-CollisionShape2D
-Area2D

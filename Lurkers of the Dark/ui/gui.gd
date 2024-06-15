@@ -9,3 +9,5 @@ func update_health(value):
 func update_ammo(ammo_string):
 	ammo_counter.text= ammo_string
 
+func clear_gui():
+	ammo_counter.text= ""

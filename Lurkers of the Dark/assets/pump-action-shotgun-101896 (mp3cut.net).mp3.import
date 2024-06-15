@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cytys8hwitoax"
+path="res://.godot/imported/pump-action-shotgun-101896 (mp3cut.net).mp3-fb775a2c84f95b06cf4b97c31fc269cd.mp3str"
+
+[deps]
+
+source_file="res://assets/pump-action-shotgun-101896 (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/pump-action-shotgun-101896 (mp3cut.net).mp3-fb775a2c84f95b06cf4b97c31fc269cd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
