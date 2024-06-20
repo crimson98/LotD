@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://cpv17gifnl671"]
+[gd_scene load_steps=2 format=3 uid="uid://cpv17gifnl671"]
+
+[ext_resource type="Script" path="res://ui/game_over_screen.gd" id="1_88t2j"]
 
 [node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource("1_88t2j")
 
 [node name="GameOverScreen" type="Control" parent="."]
 visible = false
@@ -46,10 +49,12 @@ offset_bottom = 40.5
 grow_horizontal = 2
 text = "Game Over"
 
-[node name="Button" type="Button" parent="GameOverScreen/Panel"]
+[node name="Quit}" type="Button" parent="GameOverScreen/Panel"]
 layout_mode = 0
 offset_left = 69.5
 offset_top = 66.5
 offset_right = 127.5
 offset_bottom = 97.5
-text = "Restar"
+text = "Quit"
+
+[connection signal="pressed" from="GameOverScreen/Panel/Quit}" to="." method="_on_button_pressed"]

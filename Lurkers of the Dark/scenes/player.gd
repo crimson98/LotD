@@ -45,6 +45,7 @@ func _ready():
 	gui.update_health(health)
 	health_changed.connect(gui.update_health)
 	gui.hide()
+	game_over_screen.hide()
 
 func _physics_process(delta: float) -> void:
 	if dead:
