@@ -5,11 +5,6 @@
 
 [node name="DBShotgun" instance=ExtResource("1_hb0rt")]
 script = ExtResource("2_mn36m")
-clip = 2
-ammo = 10
-damage = 37
-penetration = 2
-cone_deg = 13
 
 [node name="ReloadTimer" parent="." index="4"]
 wait_time = 1.5

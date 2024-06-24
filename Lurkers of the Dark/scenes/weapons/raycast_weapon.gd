@@ -3,7 +3,7 @@ class_name RaycastWeapon
 
 var MAX_SPD= 1000
 var SPD_DAMP= 850
-var fireable= true
+@export var fireable= true
 var holder= null
 var shotgun_fire_sound= preload("res://assets/080902_shotgun-39753.mp3")
 var shell_reload_sound= preload("res://assets/pump-action-shotgun-101896 (mp3cut.net).mp3")
@@ -28,8 +28,8 @@ var shotgun_reload_sound= preload("res://assets/rifle-or-shotgun-reload-6787 (mp
 @onready var move_dir= Vector2.ZERO
 @onready var speed= 0
 @onready var pickable = true
-@onready var current_clip = clip
-@onready var current_ammo = ammo
+@export var current_clip = clip
+@export var current_ammo = ammo
 
 signal empty
 signal ammo_change
@@ -53,7 +53,7 @@ func fire(caller: int):
 		Debug.log("fire")
 		sound_player.stream = shotgun_fire_sound
 		sound_player.play()
-		fireable= false
+		is_fireable.rpc_id(1, false)
 		var volley= min(burst, current_clip)
 		current_clip-= volley
 		fire_rate.start()
@@ -72,16 +72,20 @@ func fire(caller: int):
 	
 	return get_current_ammo()
 
+# you should only call rpcs for sync operations, like changing the ammo of a weapon for 
+# everyone
+# edit reload in player, shouldn't be an rpc
+
 @rpc("authority", "call_local", "reliable")
-func reload():
+func reload(caller: int):
 	Debug.log("reload")
 	# maybe check if fireable on _process
 	if fireable: 
-		fireable= false
+		is_fireable.rpc_id(1, false)
 		Debug.log("reload_timer_start")
 		reload_time.start()
 
-@rpc("authority", "call_local", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func partial_reload():
 	Debug.log("partial reload")
 	var ammo_to_reload= min(clip - current_clip, current_ammo)
@@ -89,7 +93,7 @@ func partial_reload():
 	current_clip+= ammo_to_reload
 	current_ammo-= ammo_to_reload
 
-@rpc("authority", "call_local", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func total_reload():
 	Debug.log("total reload")
 	var ammo_to_reload= min(clip, current_ammo)
@@ -109,6 +113,7 @@ func pick_up(caller: int):
 	move_dir= Vector2.ZERO
 	speed= 0
 	ammo_change.emit()
+	multiplayer.get_remote_sender_id()
 	# $Graphics/Dropped.hide()
 	# $Graphics/OnHand.show()
 
@@ -129,7 +134,7 @@ func drop(caller: int, position: Vector2= global_position, direction: Vector2= V
 func vanish():
 	Debug.log("vanish")
 	pickable= false
-	fireable= false
+	is_fireable.rpc_id(1, false)
 	vanish_time.start()
 	# await vanish_time.timeout
 	# queue_free()
@@ -142,13 +147,19 @@ func change_holder(id):
 func erase_holder():
 	holder= null
 
+@rpc("any_peer", "call_local", "reliable")
+func is_fireable(value: bool):
+	fireable= value
+
 func _on_rof_timeout():
 	if current_ammo + current_clip == 0:
 		Debug.log("weapon empty")
 		empty.emit()
+		vanish_time.start()
 		$PickArea.set_monitoring(false)
 	else: 
-		fireable= true
+		# fireable= true
+		is_fireable.rpc_id(1, true)
 		ammo_change.emit()
 		for pellet in raycast_cluster.get_children():
 			pellet.clear_exceptions()
@@ -156,10 +167,13 @@ func _on_rof_timeout():
 func _on_reload_timer_timeout():
 	Debug.log("reload timer timeout")
 	if p_reload:
+		# partial_reload.rpc()
 		partial_reload.rpc()
 	else: 
+		# total_reload.rpc()
 		total_reload.rpc()
-	fireable= true
+	# fireable= true
+	is_fireable.rpc(true)
 	ammo_change.emit()
 	sound_player.stream = shotgun_reload_sound
 	sound_player.play()

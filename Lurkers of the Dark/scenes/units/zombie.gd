@@ -95,6 +95,7 @@ func take_damage(damage):
 
 @rpc("any_peer", "call_local")
 func get_damaged(dmg):
+	Debug.log(str(get_class() + " has been damaged for " + str(dmg) + " damage"))
 	health -= dmg
 
 func kill():

@@ -59,22 +59,20 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
-		if event.is_action_pressed("interact") and len(pickable_weapons_in_range)> 0:
-			if weapon_in_hand== null:
-				_pick_up_weapon.rpc(get_multiplayer_authority())
-			else:
-				_drop_weapon.rpc(get_multiplayer_authority())
-				_pick_up_weapon.rpc(get_multiplayer_authority())
-		
-		if event.is_action_pressed("fire") and weapon_in_hand!= null:
-			weapon_in_hand.fire.rpc(get_multiplayer_authority())
-			gui.update_ammo(weapon_in_hand.get_current_ammo())
-		
-		if event.is_action_pressed("drop_weapon") and weapon_in_hand!= null:
+		if event.is_action_pressed("drop_weapon") and weapon_in_hand!= null and weapon_in_hand.fireable :
 			_drop_weapon.rpc(get_multiplayer_authority())
 		
+		if event.is_action_pressed("interact") and len(pickable_weapons_in_range)> 0:
+			if weapon_in_hand!= null:
+				_drop_weapon.rpc(get_multiplayer_authority())
+			_pick_up_weapon.rpc(get_multiplayer_authority())
+		
+		if event.is_action_pressed("fire") and weapon_in_hand!= null:
+			weapon_in_hand.fire(get_multiplayer_authority())
+			gui.update_ammo(weapon_in_hand.get_current_ammo())
+		
 		if event.is_action_pressed("reload") and weapon_in_hand!= null:
-			weapon_in_hand.reload.rpc()
+			weapon_in_hand.reload(get_multiplayer_authority())
 			gui.update_ammo(weapon_in_hand.get_current_ammo())
 		
 		if event.is_action_pressed("call_1"):
@@ -99,7 +97,7 @@ func setup(player_data: Statics.PlayerData):
 func _spawn_weapon():
 	var spawn_point= position + Vector2(210,0).rotated(global_rotation)
 	var db_shotgun= db_shotgun_scene.instantiate()
-	get_tree().get_root().get_node("Main/Weapons").add_child(db_shotgun)
+	get_tree().get_root().get_node("Main/Weapons").add_child(db_shotgun, true)
 	db_shotgun.global_position= spawn_point
 
 @rpc("any_peer", "call_local", "reliable")
@@ -107,7 +105,8 @@ func _pick_up_weapon(caller: int):
 	Debug.log(str(caller) + " wants to pick up a weapon")
 	weapon_in_hand= pickable_weapons_in_range.pop_front()
 	if weapon_in_hand!= null:
-		weapon_in_hand.pick_up(get_multiplayer_authority())
+		weapon_in_hand.rpc('pick_up', get_multiplayer_authority())
+		# weapon_in_hand.pick_up(get_multiplayer_authority())
 		weapon_in_hand.get_parent().remove_child(weapon_in_hand)
 		gun_position.add_child(weapon_in_hand)
 		weapon_in_hand.position= Vector2.ZERO
@@ -118,7 +117,7 @@ func _pick_up_weapon(caller: int):
 @rpc("any_peer", "call_local", "reliable")
 func _drop_weapon(caller: int):
 	Debug.log(str(caller) + " wants to drop a weapon")
-	if weapon_in_hand!= null:
+	if weapon_in_hand!= null and caller== weapon_in_hand.holder:
 		weapon_in_hand.empty.disconnect(_weapon_empty)
 		weapon_in_hand.ammo_change.disconnect(_update_ammo)
 		gun_position.remove_child(weapon_in_hand)
@@ -126,7 +125,7 @@ func _drop_weapon(caller: int):
 		if is_multiplayer_authority():
 			Debug.log(str(get_multiplayer_authority()) + " passed the multiplayer authority test, throwing")
 			var throw_direction= get_global_mouse_position() - global_position
-			weapon_in_hand.drop.rpc(get_multiplayer_authority(), gun_position.global_position, throw_direction.normalized())
+			weapon_in_hand.rpc('drop', get_multiplayer_authority(), gun_position.global_position, throw_direction.normalized())
 		weapon_in_hand= null
 		gui.clear_gui()
 

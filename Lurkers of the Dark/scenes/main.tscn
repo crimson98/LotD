@@ -54,10 +54,7 @@ visibility_layer = 4
 [node name="Weapons" type="Node2D" parent="."]
 
 [node name="DBShotgun" parent="Weapons" instance=ExtResource("5_jpdn5")]
-position = Vector2(1012, 250)
-collision_mask = 1
-damage = 23
-cone_deg = 10
+collision_mask = 19
 
 [node name="LotDimg" type="Sprite2D" parent="."]
 visible = false
