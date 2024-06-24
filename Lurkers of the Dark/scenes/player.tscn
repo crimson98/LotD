@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://8d3ys4aw51lk"]
+[gd_scene load_steps=9 format=3 uid="uid://8d3ys4aw51lk"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_7q1sy"]
-[ext_resource type="PackedScene" uid="uid://dskjy6yd4quog" path="res://scenes/bullet.tscn" id="2_pyqhq"]
-[ext_resource type="PackedScene" uid="uid://3k73svd5vrrc" path="res://scenes/weapons/db_shotgun.tscn" id="3_qyb3m"]
 [ext_resource type="Script" path="res://scenes/Camera2D.gd" id="4_4p8xx"]
 [ext_resource type="Texture2D" uid="uid://cttfc3ck7ye12" path="res://assets/survivor_long.svg" id="5_t2fjk"]
 [ext_resource type="PackedScene" uid="uid://i6idbut7keno" path="res://ui/gui.tscn" id="5_xrdi7"]
 [ext_resource type="PackedScene" uid="uid://cpv17gifnl671" path="res://ui/game_over_screen.tscn" id="6_2vwge"]
+[ext_resource type="PackedScene" uid="uid://ccfj20dd6ws6r" path="res://ui/pause_screen.tscn" id="6_3ow2p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m718o"]
 radius = 132.015
@@ -22,8 +21,6 @@ collision_mask = 259
 motion_mode = 1
 safe_margin = 2.0
 script = ExtResource("1_7q1sy")
-bullet_scene = ExtResource("2_pyqhq")
-db_shotgun_scene = ExtResource("3_qyb3m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_m718o")
@@ -53,3 +50,5 @@ position = Vector2(20, 117)
 [node name="GUI" parent="." instance=ExtResource("5_xrdi7")]
 
 [node name="GameOverScreen" parent="." instance=ExtResource("6_2vwge")]
+
+[node name="PauseScreen" parent="." instance=ExtResource("6_3ow2p")]

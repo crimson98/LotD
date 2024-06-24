@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccfj20dd6ws6r"]
+
+[ext_resource type="Script" path="res://ui/PauseScreen.gd" id="1_01h6g"]
+
+[node name="PauseScreen" type="CanvasLayer"]
+script = ExtResource("1_01h6g")
+
+[node name="PauseScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.337255)
+
+[node name="Panel" type="Panel" parent="PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = -58.5
+offset_right = 97.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="PauseScreen/Panel"]
+offset_left = 63.5
+offset_top = 20.5
+offset_right = 133.5
+offset_bottom = 51.5
+text = "Resume"
+
+[node name="Quit" type="Button" parent="PauseScreen/Panel"]
+layout_mode = 0
+offset_left = 69.5
+offset_top = 66.5
+offset_right = 127.5
+offset_bottom = 97.5
+text = "Quit"
+
+[connection signal="pressed" from="PauseScreen/Panel/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseScreen/Panel/Quit" to="." method="_on_quit_pressed"]

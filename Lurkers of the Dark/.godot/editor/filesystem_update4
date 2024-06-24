@@ -1,10 +1,12 @@
-res://scenes/weapons/raycast_weapon.tscn
+res://ui/game_over_screen.tscn
 res://scenes/units/heavy_zombie.gd
-res://scenes/weapons/raycast_weapon.gd
 res://scenes/main.tscn
 res://scenes/player.tscn
+res://scenes/weapons/raycast_weapon.tscn
 res://scenes/weapons/db_shotgun.tscn
 res://scenes/units/zombie.tscn
-res://scenes/weapons/db_shotgun.gd
-res://scenes/player.gd
 res://ui/gui.tscn
+res://ui/game_over_screen.gd
+res://ui/PauseScreen.gd
+res://ui/pause_screen.tscn
+res://scenes/player.gd
