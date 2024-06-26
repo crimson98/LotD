@@ -6,6 +6,7 @@
 script = ExtResource("1_01h6g")
 
 [node name="PauseScreen" type="Control" parent="."]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -38,6 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Resume" type="Button" parent="PauseScreen/Panel"]
+layout_mode = 0
 offset_left = 63.5
 offset_top = 20.5
 offset_right = 133.5
