@@ -7,9 +7,11 @@
 radius = 80.025
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xmo00"]
-radius = 95.0
+resource_local_to_scene = true
+radius = 133.06
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n7l6q"]
+resource_local_to_scene = true
 radius = 567.631
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5tmn3"]
@@ -19,6 +21,9 @@ properties/0/replication_mode = 2
 properties/1/path = NodePath(".:dead")
 properties/1/spawn = true
 properties/1/replication_mode = 2
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 0
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
@@ -26,31 +31,25 @@ collision_mask = 3
 script = ExtResource("1_m41g3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_6dea2")
 
-[node name="Graphics" type="Node2D" parent="."]
-
-[node name="Alive" type="Sprite2D" parent="Graphics"]
-modulate = Color(0.87451, 0.529412, 0, 1)
-texture = ExtResource("1_6ixc6")
-
-[node name="Dead" type="Sprite2D" parent="Graphics"]
-modulate = Color(0.87451, 0.529412, 0, 1)
-z_index = -1
-texture = ExtResource("1_6ixc6")
-
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
 shape = SubResource("CircleShape2D_xmo00")
 
 [node name="Detection_Area" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area"]
+visible = false
 shape = SubResource("CircleShape2D_n7l6q")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
@@ -68,6 +67,15 @@ one_shot = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_5tmn3")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Alive" type="Sprite2D" parent="Graphics"]
+texture = ExtResource("1_6ixc6")
+
+[node name="Dead" type="Sprite2D" parent="Graphics"]
+z_index = -1
+texture = ExtResource("1_6ixc6")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
