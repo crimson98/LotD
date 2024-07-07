@@ -19,8 +19,7 @@ properties/0/replication_mode = 0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 259
-motion_mode = 1
-safe_margin = 2.0
+safe_margin = 1.0
 script = ExtResource("1_7q1sy")
 bullet_scene = ExtResource("2_pyqhq")
 db_shotgun_scene = ExtResource("3_qyb3m")

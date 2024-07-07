@@ -55,6 +55,8 @@ func _physics_process(delta: float) -> void:
 		velocity = move_dir * speed
 		look_direction= lerp(look_direction, get_global_mouse_position(), 0.05)
 		send_data.rpc(global_position, velocity, look_direction)
+	# if weapon_in_hand!= null:
+		# send_gun_data.rpc(gun_position, gun_position.global_rotation)
 	move_and_slide()
 	look_at(look_direction)
 
@@ -64,9 +66,8 @@ func _input(event: InputEvent) -> void:
 			_drop_weapon.rpc(get_multiplayer_authority())
 		
 		if event.is_action_pressed("interact") and len(pickable_weapons_in_range)> 0:
-			if weapon_in_hand!= null:
-				_drop_weapon.rpc(get_multiplayer_authority())
-			_pick_up_weapon.rpc(get_multiplayer_authority())
+			if weapon_in_hand== null:
+				_pick_up_weapon.rpc(get_multiplayer_authority())
 		
 		if event.is_action_pressed("fire") and weapon_in_hand!= null:
 			weapon_in_hand.fire(get_multiplayer_authority())
@@ -98,14 +99,19 @@ func setup(player_data: Statics.PlayerData):
 func _spawn_weapon():
 	var spawn_point= position + Vector2(210,0).rotated(global_rotation)
 	var db_shotgun= db_shotgun_scene.instantiate()
-	get_tree().get_root().get_node("Main/Weapons").add_child(db_shotgun, true)
+	var weapons_node= get_tree().get_root().get_node("Main/Weapons")
+	weapons_node.add_child(db_shotgun, true)
+	weapons_node.weapon_counter+= 1
+	db_shotgun.name= "Weapon_DBShotgun" + str(weapons_node.weapon_counter)
 	db_shotgun.global_position= spawn_point
 
 @rpc("any_peer", "call_local", "reliable")
 func _pick_up_weapon(caller: int):
-	Debug.log(str(caller) + " wants to pick up a weapon")
+	# Debug.log(str(caller) + " wants to pick up a weapon")
+	Debug.log(pickable_weapons_in_range)
 	weapon_in_hand= pickable_weapons_in_range.pop_front()
 	if weapon_in_hand!= null:
+		Debug.log(str(caller) + " passed weapon_in_hand_check")
 		weapon_in_hand.rpc('pick_up', get_multiplayer_authority())
 		# weapon_in_hand.pick_up(get_multiplayer_authority())
 		weapon_in_hand.get_parent().remove_child(weapon_in_hand)
@@ -118,7 +124,7 @@ func _pick_up_weapon(caller: int):
 @rpc("any_peer", "call_local", "reliable")
 func _drop_weapon(caller: int):
 	Debug.log(str(caller) + " wants to drop a weapon")
-	if weapon_in_hand!= null and caller== weapon_in_hand.holder:
+	if weapon_in_hand!= null: # and caller== weapon_in_hand.holder:
 		weapon_in_hand.empty.disconnect(_weapon_empty)
 		weapon_in_hand.ammo_change.disconnect(_update_ammo)
 		gun_position.remove_child(weapon_in_hand)
@@ -178,5 +184,8 @@ func send_data(pos: Vector2, vel: Vector2, look: Vector2):
 	global_position = lerp(global_position, pos, 0.75)
 	velocity = lerp(velocity, vel, 0.75)
 	look_direction= lerp(look_direction, look, 0.75)
-	
-	
+
+@rpc
+func send_gun_data(position: Vector2, rotation: float):
+	weapon_in_hand.global_position= position
+	weapon_in_hand.global_rotation= rotation

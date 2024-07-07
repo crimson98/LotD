@@ -34,13 +34,17 @@ var shotgun_reload_sound= preload("res://assets/rifle-or-shotgun-reload-6787 (mp
 signal empty
 signal ammo_change
 
+# when the weapons exit the Weapons node on main, the engine does not account for them
+# on the creation of new weapon names, so the newly created weapons have the same name
+# as the children of players ones. It then causes a name collision, and those who are dropped
+# off players now have a random name. Maybe change their names based on a global counter on Weapons
+
 func _physics_process(delta):
 	if speed >0:
 		velocity= move_dir * speed
 		move_and_slide()
 		speed-= SPD_DAMP * delta
 
-@rpc("any_peer", "call_local", "reliable")
 func fire(caller: int):
 	# instantiate some raycasts
 	# get the colissions
@@ -55,7 +59,8 @@ func fire(caller: int):
 		sound_player.play()
 		is_fireable.rpc_id(1, false)
 		var volley= min(burst, current_clip)
-		current_clip-= volley
+		# current_clip-= volley
+		_deplete_ammo.rpc(volley)
 		fire_rate.start()
 		
 		for pellet in raycast_cluster.get_children():
@@ -71,6 +76,10 @@ func fire(caller: int):
 			_pellet.rotation= deg_to_rad(rng.randf_range(-cone_deg, cone_deg))
 	
 	return get_current_ammo()
+
+@rpc("any_peer", "call_local", "reliable")
+func _deplete_ammo(volley: int):
+	current_clip-= volley
 
 # you should only call rpcs for sync operations, like changing the ammo of a weapon for 
 # everyone
@@ -114,6 +123,7 @@ func pick_up(caller: int):
 	speed= 0
 	ammo_change.emit()
 	multiplayer.get_remote_sender_id()
+	fire_rate.start()
 	# $Graphics/Dropped.hide()
 	# $Graphics/OnHand.show()
 
@@ -129,6 +139,7 @@ func drop(caller: int, position: Vector2= global_position, direction: Vector2= V
 	global_position= position
 	$PickArea.set_monitoring(true)
 	pickable= true
+	holder= null
 
 @rpc("any_peer", "call_local", "reliable")
 func vanish():
@@ -186,12 +197,13 @@ func _delete_self():
 	Debug.log("delete self")
 	queue_free()
 
-@rpc("any_peer", "call_local", "reliable")
+# @rpc("any_peer", "call_local", "reliable")
 func _on_pick_area_body_entered(body):
 	if body.has_method("shooter_player") and body.get_collision_layer()== 2:
+		Debug.log("added weapon to player: " + body.name)
 		body.pickable_weapons_in_range.append(self)
 
-@rpc("any_peer", "call_local", "reliable")
+# @rpc("any_peer", "call_local", "reliable")
 func _on_pick_area_body_exited(body):
 	if body.has_method("shooter_player") and body.get_collision_layer()== 2:
 		var remove_index= body.pickable_weapons_in_range.find(self)
