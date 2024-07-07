@@ -49,7 +49,7 @@ offset_bottom = 40.5
 grow_horizontal = 2
 text = "Game Over"
 
-[node name="Quit}" type="Button" parent="GameOverScreen/Panel"]
+[node name="Quit" type="Button" parent="GameOverScreen/Panel"]
 layout_mode = 0
 offset_left = 69.5
 offset_top = 66.5
@@ -57,4 +57,4 @@ offset_right = 127.5
 offset_bottom = 97.5
 text = "Quit"
 
-[connection signal="pressed" from="GameOverScreen/Panel/Quit}" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/Panel/Quit" to="." method="_on_quit_pressed"]
