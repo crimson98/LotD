@@ -1,6 +1,9 @@
+Timer
+ColorRect
+Control
+CanvasLayer
 Button
 VBoxContainer
-CanvasLayer
 MultiplayerSynchronizer
 RaycastWeapon
 AudioStreamPlayer2D
@@ -8,7 +11,4 @@ Marker2D
 Node2D
 Label
 Panel
-ColorRect
-Control
-Timer
 AnimationPlayer

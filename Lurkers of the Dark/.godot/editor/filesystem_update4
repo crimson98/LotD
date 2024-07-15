@@ -13,3 +13,5 @@ res://scenes/units/basic_zombie.tscn
 res://scenes/ui/lobby_player.tscn
 res://scenes/lobby_test.tscn
 res://autoloads/game.tscn
+res://scenes/units/zombie.gd
+res://ui/credits_screen.tscn
