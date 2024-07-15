@@ -1,6 +1,6 @@
-res://scenes/lobby.tscn
+res://scenes/sagrario.tscn
 res://scenes/units/heavy_zombie.gd
-res://scenes/lobby.gd
+res://scenes/sagrario.gd
 res://scenes/main.tscn
 res://scenes/player.tscn
 res://scenes/weapons/raycast_weapon.tscn
@@ -11,5 +11,6 @@ res://scenes/units/heavy_zombie.tscn
 res://ui/pause_screen.tscn
 res://scenes/units/basic_zombie.tscn
 res://scenes/ui/lobby_player.tscn
+res://scenes/lobby.tscn
 res://scenes/lobby_test.tscn
 res://autoloads/game.tscn

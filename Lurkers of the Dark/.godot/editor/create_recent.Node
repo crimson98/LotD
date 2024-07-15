@@ -1,7 +1,8 @@
+ProgressBar
+MultiplayerSynchronizer
 Button
 VBoxContainer
 CanvasLayer
-MultiplayerSynchronizer
 RaycastWeapon
 AudioStreamPlayer2D
 Marker2D
