@@ -20,6 +20,7 @@ extends MarginContainer
 
 @onready var menus: MarginContainer = %Menus
 
+@onready var first_menu = %FirstMenu
 @onready var start_menu = %StartMenu
 @onready var join_menu = %JoinMenu
 @onready var ready_menu = %ReadyMenu
@@ -72,7 +73,7 @@ func _ready():
 	ready_toggle.disabled = true
 	time_container.hide()
 
-	_go_to_menu(start_menu)
+	_go_to_menu(first_menu)
 	
 	user.text = OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
  else "")
@@ -93,6 +94,10 @@ func _on_upnp_completed(some_status) -> void:
 		Debug.log("Port Error", 5)
 
 
+func _on_play_pressed():
+	_go_to_menu(start_menu)
+	
+
 func _on_host_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
 	
@@ -112,6 +117,10 @@ func _on_host_pressed() -> void:
 func _on_join_pressed() -> void:
 	_go_to_menu(join_menu)
 
+
+func _on_back_start_pressed():
+	_go_to_menu(first_menu)
+	
 
 func _on_confirm_join_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
@@ -176,8 +185,6 @@ func _remove_player(id: int):
 	lobby_player.queue_free()
 	status.erase(id)
 	Game.remove_player(id)
-
-
 
 
 @rpc("any_peer", "reliable")
@@ -289,3 +296,9 @@ func _back_to_first_menu() -> void:
 		first.show()
 	if Game.is_online():
 		_disconnect()
+
+
+
+
+
+

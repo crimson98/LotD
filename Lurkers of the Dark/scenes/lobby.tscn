@@ -21,6 +21,23 @@ size_flags_vertical = 4
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="FirstMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Play" type="Button" parent="PanelContainer/Menus/FirstMenu"]
+layout_mode = 2
+text = "Play"
+
+[node name="Tutorial" type="Button" parent="PanelContainer/Menus/FirstMenu"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="Credits" type="Button" parent="PanelContainer/Menus/FirstMenu"]
+layout_mode = 2
+text = "Credits"
+
 [node name="StartMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
@@ -50,6 +67,10 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Join"
+
+[node name="BackStart" type="Button" parent="PanelContainer/Menus/StartMenu/HBoxContainer"]
+layout_mode = 2
+text = "Back"
 
 [node name="JoinMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
 unique_name_in_owner = true
@@ -150,3 +171,6 @@ layout_mode = 2
 text = "5"
 
 [node name="StartTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="PanelContainer/Menus/FirstMenu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="PanelContainer/Menus/StartMenu/HBoxContainer/BackStart" to="." method="_on_back_start_pressed"]

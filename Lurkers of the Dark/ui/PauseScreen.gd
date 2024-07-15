@@ -10,7 +10,7 @@ func _process(delta):
 func testEsc():
 	if Input.is_action_just_pressed("esc") and pause_screen.visible:
 		pause_screen.hide()
-	if Input.is_action_just_pressed("esc") and !pause_screen.visible:
+	elif Input.is_action_just_pressed("esc") and !pause_screen.visible:
 		pause_screen.show()
 
 
