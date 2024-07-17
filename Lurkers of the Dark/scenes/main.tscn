@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=13 format=3 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://8d3ys4aw51lk" path="res://scenes/player.tscn" id="2_jyiyy"]
@@ -8,6 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://cd2d3kdi0v4u6" path="res://assets/LotDimg.png" id="5_qtwuu"]
 [ext_resource type="PackedScene" uid="uid://7sqyhl1v6fdo" path="res://scenes/units/basic_zombie.tscn" id="5_tj1tm"]
 [ext_resource type="PackedScene" uid="uid://cxsmiih310ffa" path="res://scenes/units/heavy_zombie.tscn" id="6_8n4l4"]
+[ext_resource type="PackedScene" uid="uid://d1c7viwdaqk0x" path="res://scenes/world.tscn" id="9_nxcra"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fr4v4"]
+size = Vector2(13302, 470)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocxge"]
+size = Vector2(407.5, 7662)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_06y06"]
 properties/0/path = NodePath(".:counter1")
@@ -20,24 +27,53 @@ player_scene = ExtResource("2_jyiyy")
 rts_player = ExtResource("3_gr287")
 sagrario = ExtResource("4_38sui")
 
+[node name="World" parent="." instance=ExtResource("9_nxcra")]
+position = Vector2(473, 247)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World"]
+visible = false
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(115, -3834)
+shape = SubResource("RectangleShape2D_fr4v4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(194, 4308)
+shape = SubResource("RectangleShape2D_fr4v4")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(-6280, 246)
+shape = SubResource("RectangleShape2D_ocxge")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(6911, 243)
+shape = SubResource("RectangleShape2D_ocxge")
+
 [node name="Players" type="Node2D" parent="."]
+light_mask = 257
 
 [node name="SpawnMarker" type="Node2D" parent="."]
 
 [node name="PlayerA" type="Marker2D" parent="SpawnMarker"]
-position = Vector2(-1546, -765)
+light_mask = 257
+position = Vector2(905, 2730)
 
 [node name="PlayerB" type="Marker2D" parent="SpawnMarker"]
-position = Vector2(-1049, 1227)
+light_mask = 257
+position = Vector2(-2999, 526)
 
 [node name="PlayerC" type="Marker2D" parent="SpawnMarker"]
-position = Vector2(292, 1200)
+light_mask = 257
+position = Vector2(429, -1620)
 
 [node name="PlayerD" type="Marker2D" parent="SpawnMarker"]
-position = Vector2(723, 105)
+light_mask = 257
+position = Vector2(843, 136)
 
 [node name="Sagrary1" type="Marker2D" parent="SpawnMarker"]
-position = Vector2(2432, -280)
+position = Vector2(2092, -344)
 
 [node name="Sagrary2" type="Marker2D" parent="SpawnMarker"]
 position = Vector2(1879, 304)

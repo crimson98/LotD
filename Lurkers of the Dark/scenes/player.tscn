@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://3k73svd5vrrc" path="res://scenes/weapons/db_shotgun.tscn" id="3_qyb3m"]
 [ext_resource type="Script" path="res://scenes/Camera2D.gd" id="4_4p8xx"]
 [ext_resource type="Texture2D" uid="uid://cttfc3ck7ye12" path="res://assets/survivor_long.svg" id="5_t2fjk"]
-[ext_resource type="PackedScene" uid="uid://i6idbut7keno" path="res://ui/gui.tscn" id="5_xrdi7"]
-[ext_resource type="PackedScene" uid="uid://cpv17gifnl671" path="res://ui/game_over_screen.tscn" id="6_2vwge"]
+[ext_resource type="PackedScene" uid="uid://dejllv4o3xuhb" path="res://UI/gui.tscn" id="5_xrdi7"]
+[ext_resource type="PackedScene" uid="uid://cpv17gifnl671" path="res://UI/game_over_screen.tscn" id="6_2vwge"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m718o"]
 radius = 132.015
@@ -17,6 +17,7 @@ properties/0/spawn = true
 properties/0/replication_mode = 0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(0.7, 0.7)
 collision_layer = 2
 collision_mask = 259
 safe_margin = 1.0
