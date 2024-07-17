@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=13 format=3 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://8d3ys4aw51lk" path="res://scenes/player.tscn" id="2_jyiyy"]
@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cd2d3kdi0v4u6" path="res://assets/LotDimg.png" id="5_qtwuu"]
 [ext_resource type="PackedScene" uid="uid://7sqyhl1v6fdo" path="res://scenes/units/basic_zombie.tscn" id="5_tj1tm"]
 [ext_resource type="PackedScene" uid="uid://cxsmiih310ffa" path="res://scenes/units/heavy_zombie.tscn" id="6_8n4l4"]
-[ext_resource type="PackedScene" uid="uid://ccfj20dd6ws6r" path="res://ui/pause_screen.tscn" id="10_hd5gn"]
 [ext_resource type="PackedScene" uid="uid://maup5d68qrev" path="res://scenes/weapons/ba_rifle.tscn" id="7_jlvc6"]
+[ext_resource type="PackedScene" uid="uid://ccfj20dd6ws6r" path="res://ui/pause_screen.tscn" id="10_hd5gn"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_06y06"]
 properties/0/path = NodePath(".:counter1")
