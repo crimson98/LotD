@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://8d3ys4aw51lk"]
+[gd_scene load_steps=13 format=3 uid="uid://8d3ys4aw51lk"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_7q1sy"]
+[ext_resource type="PackedScene" uid="uid://3k73svd5vrrc" path="res://scenes/weapons/db_shotgun.tscn" id="2_ylrmo"]
+[ext_resource type="PackedScene" uid="uid://maup5d68qrev" path="res://scenes/weapons/ba_rifle.tscn" id="3_aex6p"]
 [ext_resource type="Script" path="res://scenes/Camera2D.gd" id="4_4p8xx"]
+[ext_resource type="Texture2D" uid="uid://b4irsb31l7bhy" path="res://assets/survivor_short.svg" id="5_cnbat"]
 [ext_resource type="Texture2D" uid="uid://cttfc3ck7ye12" path="res://assets/survivor_long.svg" id="5_t2fjk"]
 [ext_resource type="PackedScene" uid="uid://i6idbut7keno" path="res://ui/gui.tscn" id="5_xrdi7"]
 [ext_resource type="PackedScene" uid="uid://cpv17gifnl671" path="res://ui/game_over_screen.tscn" id="6_2vwge"]
 [ext_resource type="PackedScene" uid="uid://ccfj20dd6ws6r" path="res://ui/pause_screen.tscn" id="6_3ow2p"]
+[ext_resource type="PackedScene" uid="uid://chlvx5fwgj018" path="res://scenes/weapons/h_gun.tscn" id="9_5b1a1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m718o"]
 radius = 132.015
@@ -20,6 +24,8 @@ collision_layer = 2
 collision_mask = 259
 safe_margin = 1.0
 script = ExtResource("1_7q1sy")
+db_shotgun_scene = ExtResource("2_ylrmo")
+ba_rifle_scene = ExtResource("3_aex6p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_m718o")
@@ -37,17 +43,29 @@ script = ExtResource("4_4p8xx")
 
 [node name="Graphics" type="Node2D" parent="."]
 
+[node name="ShortWeapon" type="Sprite2D" parent="Graphics"]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_cnbat")
+
 [node name="LongWeapon" type="Sprite2D" parent="Graphics"]
+visible = false
 z_index = -1
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_t2fjk")
 
-[node name="GunPos" type="Marker2D" parent="."]
+[node name="LGunPos" type="Marker2D" parent="."]
 position = Vector2(20, 117)
+
+[node name="SGunPos" type="Marker2D" parent="."]
+position = Vector2(164, 15)
 
 [node name="GUI" parent="." instance=ExtResource("5_xrdi7")]
 
 [node name="GameOverScreen" parent="." instance=ExtResource("6_2vwge")]
 
 [node name="PauseScreen" parent="." instance=ExtResource("6_3ow2p")]
+
+[node name="HGun" parent="." instance=ExtResource("9_5b1a1")]
+position = Vector2(164, 15)

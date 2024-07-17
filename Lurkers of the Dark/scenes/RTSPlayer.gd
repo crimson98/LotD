@@ -48,8 +48,8 @@ func player():
 	pass
 
 @rpc("authority", "call_local", "reliable")
-func test(name):
-	var message = "test " + name
+func test(some_name):
+	var message = "test " + some_name
 	var sender_id = multiplayer.get_remote_sender_id()
 	var sender_player = Game.get_player(sender_id)
 	Debug.log(message)

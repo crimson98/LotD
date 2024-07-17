@@ -1,10 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://3k73svd5vrrc"]
+[gd_scene load_steps=4 format=3 uid="uid://3k73svd5vrrc"]
 
 [ext_resource type="PackedScene" uid="uid://dgyx5nfep28xe" path="res://scenes/weapons/raycast_weapon.tscn" id="1_hb0rt"]
 [ext_resource type="Script" path="res://scenes/weapons/db_shotgun.gd" id="2_mn36m"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4iw"]
+size = Vector2(220, 19)
+
 [node name="DBShotgun" instance=ExtResource("1_hb0rt")]
 script = ExtResource("2_mn36m")
 
+[node name="Shape" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(100, 0.5)
+shape = SubResource("RectangleShape2D_fq4iw")
+
+[node name="PickArea" parent="." index="2"]
+visible = false
+
+[node name="ROF" parent="." index="3"]
+wait_time = 0.1
+
 [node name="ReloadTimer" parent="." index="4"]
 wait_time = 1.5
+
+[node name="Pellet1" type="RayCast2D" parent="RaycastsNode" index="0"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+collision_mask = 3
+
+[node name="Pellet2" type="RayCast2D" parent="RaycastsNode" index="1"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+collision_mask = 3
+
+[node name="Pellet3" type="RayCast2D" parent="RaycastsNode" index="2"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+collision_mask = 3
+
+[node name="Pellet4" type="RayCast2D" parent="RaycastsNode" index="3"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+collision_mask = 3
+
+[node name="Pellet5" type="RayCast2D" parent="RaycastsNode" index="4"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+collision_mask = 3
+
+[node name="Pellet6" type="RayCast2D" parent="RaycastsNode" index="5"]
+position = Vector2(220, 0)
+target_position = Vector2(1250, 0)
+collision_mask = 3

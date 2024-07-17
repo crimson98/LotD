@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://chlvx5fwgj018"]
+
+[ext_resource type="PackedScene" uid="uid://dgyx5nfep28xe" path="res://scenes/weapons/raycast_weapon.tscn" id="1_oicqr"]
+[ext_resource type="Script" path="res://scenes/weapons/HGun.gd" id="2_vmvd4"]
+[ext_resource type="Texture2D" uid="uid://c3mns15sy4rcj" path="res://assets/handgun(3).svg" id="3_ni56f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11gio"]
+size = Vector2(42, 10)
+
+[node name="HGun" instance=ExtResource("1_oicqr")]
+script = ExtResource("2_vmvd4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_11gio")
+
+[node name="OnHand" parent="Graphics" index="0"]
+position = Vector2(125, 1.45519e-11)
+texture = ExtResource("3_ni56f")
+
+[node name="PickArea" parent="." index="2"]
+visible = false
+
+[node name="CollisionShape2D" parent="PickArea" index="0"]
+position = Vector2(15, 0)
+
+[node name="ROF" parent="." index="3"]
+wait_time = 0.25
+
+[node name="Pellet1" type="RayCast2D" parent="RaycastsNode" index="0"]
+position = Vector2(68, 0)
+target_position = Vector2(1250, 0)
+collision_mask = 3
