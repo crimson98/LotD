@@ -11,3 +11,12 @@ res://scenes/player.tscn
 res://scenes/lobby.gd
 res://ui/credits_screen.gd
 res://ui/tutorial_screen.gd
+res://scenes/player.tscn
+res://scenes/units/heavy_zombie.gd
+res://scenes/player.gd
+res://scenes/main.tscn
+res://scenes/weapons/raycast_weapon.tscn
+res://scenes/weapons/db_shotgun.tscn
+res://scenes/weapons/ba_rifle.tscn
+res://scenes/weapons/h_gun.tscn
+res://ui/gui.tscn

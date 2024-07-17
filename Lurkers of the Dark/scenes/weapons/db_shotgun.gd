@@ -3,9 +3,8 @@ class_name DBShotgun
 
 func _ready():
 	clip= 2
-	ammo= 10
+	ammo= 12
 	burst= 1
-	p_reload= true
 	damage= 30
 	penetration= 2
 	cone_deg= 13
