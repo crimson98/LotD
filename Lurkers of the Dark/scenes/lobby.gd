@@ -21,6 +21,8 @@ extends MarginContainer
 @onready var menus: MarginContainer = %Menus
 
 @onready var first_menu = %FirstMenu
+@onready var tutorial_menu = $PanelContainer/Menus/TutorialScreen
+@onready var credits_menu = $PanelContainer/Menus/CreditsScreen
 @onready var start_menu = %StartMenu
 @onready var join_menu = %JoinMenu
 @onready var ready_menu = %ReadyMenu
@@ -72,6 +74,9 @@ func _ready():
 	
 	ready_toggle.disabled = true
 	time_container.hide()
+	
+	tutorial_menu.hide()
+	credits_menu.hide()
 
 	_go_to_menu(first_menu)
 	
@@ -96,7 +101,15 @@ func _on_upnp_completed(some_status) -> void:
 
 func _on_play_pressed():
 	_go_to_menu(start_menu)
-	
+
+
+func _on_tutorial_pressed():
+	_go_to_menu(tutorial_menu)
+
+
+func _on_credits_pressed():
+	_go_to_menu(credits_menu)
+
 
 func _on_host_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
@@ -113,6 +126,13 @@ func _on_host_pressed() -> void:
 	
 	_go_to_menu(ready_menu)
 
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("esc") and tutorial_menu.visible:
+		_go_to_menu(first_menu)
+	if event.is_action_pressed("esc") and credits_menu.visible:
+		_go_to_menu(first_menu)
+		
 
 func _on_join_pressed() -> void:
 	_go_to_menu(join_menu)
@@ -273,7 +293,7 @@ func _hide_menus():
 		child.hide()
 
 
-func _go_to_menu(menu: Control) -> void:
+func _go_to_menu(menu) -> void:
 	_hide_menus()
 	_menu_stack.push_back(menu)
 	menu.show()
@@ -296,9 +316,4 @@ func _back_to_first_menu() -> void:
 		first.show()
 	if Game.is_online():
 		_disconnect()
-
-
-
-
-
-
+		

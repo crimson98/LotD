@@ -13,3 +13,34 @@ layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CreditsScreen"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -432.0
+offset_top = 96.0
+offset_right = -39.0
+offset_bottom = -113.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Lurkers of the Dark
+
+Creadores
+
+Felipe Borjas
+Hugo Cortés
+Nicolás Montenegro
+Ignacio Parada
+Francisco Peña
+
+
+Assets
+
+Paepu
+https://cartographyassets.com/creator/peapu/
+Tyger_PURR
+https://cartographyassets.com/creator/tyger_purr/"
+horizontal_alignment = 1

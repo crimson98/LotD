@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=5 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="Script" path="res://scenes/lobby.gd" id="1_g2fmt"]
 [ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
+[ext_resource type="PackedScene" uid="uid://bjebca4hbfnei" path="res://ui/credits_screen.tscn" id="3_inyce"]
+[ext_resource type="PackedScene" uid="uid://dysjix72wr4sb" path="res://ui/tutorial_screen.tscn" id="4_t7tsc"]
 
 [node name="Lobby" type="MarginContainer"]
 anchors_preset = 15
@@ -23,7 +25,6 @@ layout_mode = 2
 
 [node name="FirstMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="Play" type="Button" parent="PanelContainer/Menus/FirstMenu"]
@@ -40,6 +41,7 @@ text = "Credits"
 
 [node name="StartMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
@@ -170,7 +172,13 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "5"
 
+[node name="TutorialScreen" parent="PanelContainer/Menus" instance=ExtResource("4_t7tsc")]
+
+[node name="CreditsScreen" parent="PanelContainer/Menus" instance=ExtResource("3_inyce")]
+
 [node name="StartTimer" type="Timer" parent="."]
 
 [connection signal="pressed" from="PanelContainer/Menus/FirstMenu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="PanelContainer/Menus/FirstMenu/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="PanelContainer/Menus/FirstMenu/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="PanelContainer/Menus/StartMenu/HBoxContainer/BackStart" to="." method="_on_back_start_pressed"]

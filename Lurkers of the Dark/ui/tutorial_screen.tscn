@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=3 uid="uid://dysjix72wr4sb"]
+
+[ext_resource type="Texture2D" uid="uid://bmi2kg7qtns8" path="res://assets/icons8-left-click-50.png" id="1_25t65"]
+[ext_resource type="Texture2D" uid="uid://c0rwjiqqfgmht" path="res://assets/icons8-g-key-50.png" id="2_vm3lw"]
+[ext_resource type="Texture2D" uid="uid://chraicqahptxl" path="res://assets/icons8-f-key-50.png" id="3_gg4cr"]
+[ext_resource type="Texture2D" uid="uid://b0h17io18nmnp" path="res://assets/icons8-r-key-50.png" id="4_slr5h"]
+[ext_resource type="Texture2D" uid="uid://dwcctfqmfxo53" path="res://assets/icons8-w-key-50.png" id="5_0fou7"]
+[ext_resource type="Texture2D" uid="uid://dvdxmvdc66veq" path="res://assets/icons8-a-key-50.png" id="6_s1j6y"]
+[ext_resource type="Texture2D" uid="uid://cit4oe120visv" path="res://assets/icons8-s-key-50.png" id="7_8e18l"]
+[ext_resource type="Texture2D" uid="uid://knilftsls12b" path="res://assets/icons8-d-key-50.png" id="8_7fyep"]
+
+[node name="TutorialScreen" type="CanvasLayer"]
+
+[node name="TutorialScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="TutorialScreen"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="WASD" type="ColorRect" parent="TutorialScreen"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 96.0
+offset_right = 928.0
+offset_bottom = 552.0
+color = Color(0, 0, 0, 1)
+
+[node name="Icons8-left-click-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+position = Vector2(72, 160)
+texture = ExtResource("1_25t65")
+
+[node name="Icons8-g-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+position = Vector2(72, 336)
+texture = ExtResource("2_vm3lw")
+
+[node name="Icons8-f-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+position = Vector2(72, 248)
+texture = ExtResource("3_gg4cr")
+
+[node name="Icons8-r-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+position = Vector2(72, 424)
+texture = ExtResource("4_slr5h")
+
+[node name="Icons8-w-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+position = Vector2(72, 24)
+texture = ExtResource("5_0fou7")
+
+[node name="Icons8-a-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+position = Vector2(24, 72)
+texture = ExtResource("6_s1j6y")
+
+[node name="Icons8-s-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+position = Vector2(72, 72)
+texture = ExtResource("7_8e18l")
+
+[node name="Icons8-d-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+position = Vector2(120, 72)
+texture = ExtResource("8_7fyep")
+
+[node name="Label" type="Label" parent="TutorialScreen/WASD"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 40.0
+offset_right = 661.0
+offset_bottom = 63.0
+text = "Movimiento"
+
+[node name="Label2" type="Label" parent="TutorialScreen/WASD"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 408.0
+offset_right = 637.0
+offset_bottom = 432.0
+text = "Recargar
+"
+
+[node name="Label3" type="Label" parent="TutorialScreen/WASD"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 152.0
+offset_right = 635.0
+offset_bottom = 175.0
+text = "Disparar"
+
+[node name="Label4" type="Label" parent="TutorialScreen/WASD"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 240.0
+offset_right = 664.0
+offset_bottom = 263.0
+text = "Tomar arma"
+
+[node name="Label5" type="Label" parent="TutorialScreen/WASD"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 320.0
+offset_right = 656.0
+offset_bottom = 343.0
+text = "Botar arma"
