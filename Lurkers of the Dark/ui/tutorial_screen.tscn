@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dysjix72wr4sb"]
+[gd_scene load_steps=11 format=3 uid="uid://dysjix72wr4sb"]
 
 [ext_resource type="Texture2D" uid="uid://bmi2kg7qtns8" path="res://assets/icons8-left-click-50.png" id="1_25t65"]
 [ext_resource type="Texture2D" uid="uid://c0rwjiqqfgmht" path="res://assets/icons8-g-key-50.png" id="2_vm3lw"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dvdxmvdc66veq" path="res://assets/icons8-a-key-50.png" id="6_s1j6y"]
 [ext_resource type="Texture2D" uid="uid://cit4oe120visv" path="res://assets/icons8-s-key-50.png" id="7_8e18l"]
 [ext_resource type="Texture2D" uid="uid://knilftsls12b" path="res://assets/icons8-d-key-50.png" id="8_7fyep"]
+[ext_resource type="Texture2D" uid="uid://kv45ahbgeyxb" path="res://assets/icons8-z-key-50.png" id="9_hqox0"]
+[ext_resource type="Texture2D" uid="uid://bmf0n7jkjx41a" path="res://assets/icons8-x-key-50.png" id="10_5fxvq"]
 
 [node name="TutorialScreen" type="CanvasLayer"]
 
@@ -28,54 +30,54 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="WASD" type="ColorRect" parent="TutorialScreen"]
+[node name="Sobreviviente" type="ColorRect" parent="TutorialScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -448.0
+offset_left = -464.0
 offset_top = -204.0
-offset_right = -9.0
+offset_right = -25.0
 offset_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Icons8-left-click-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+[node name="Icons8-left-click-50" type="Sprite2D" parent="TutorialScreen/Sobreviviente"]
 position = Vector2(72, 160)
 texture = ExtResource("1_25t65")
 
-[node name="Icons8-g-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+[node name="Icons8-g-key-50" type="Sprite2D" parent="TutorialScreen/Sobreviviente"]
 position = Vector2(72, 336)
 texture = ExtResource("2_vm3lw")
 
-[node name="Icons8-f-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+[node name="Icons8-f-key-50" type="Sprite2D" parent="TutorialScreen/Sobreviviente"]
 position = Vector2(72, 248)
 texture = ExtResource("3_gg4cr")
 
-[node name="Icons8-r-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+[node name="Icons8-r-key-50" type="Sprite2D" parent="TutorialScreen/Sobreviviente"]
 position = Vector2(72, 424)
 texture = ExtResource("4_slr5h")
 
-[node name="Icons8-w-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+[node name="Icons8-w-key-50" type="Sprite2D" parent="TutorialScreen/Sobreviviente"]
 position = Vector2(72, 24)
 texture = ExtResource("5_0fou7")
 
-[node name="Icons8-a-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+[node name="Icons8-a-key-50" type="Sprite2D" parent="TutorialScreen/Sobreviviente"]
 position = Vector2(24, 72)
 texture = ExtResource("6_s1j6y")
 
-[node name="Icons8-s-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+[node name="Icons8-s-key-50" type="Sprite2D" parent="TutorialScreen/Sobreviviente"]
 position = Vector2(72, 72)
 texture = ExtResource("7_8e18l")
 
-[node name="Icons8-d-key-50" type="Sprite2D" parent="TutorialScreen/WASD"]
+[node name="Icons8-d-key-50" type="Sprite2D" parent="TutorialScreen/Sobreviviente"]
 position = Vector2(120, 72)
 texture = ExtResource("8_7fyep")
 
-[node name="Label" type="Label" parent="TutorialScreen/WASD"]
+[node name="Label" type="Label" parent="TutorialScreen/Sobreviviente"]
 layout_mode = 0
 offset_left = 312.0
 offset_top = 40.0
@@ -83,7 +85,7 @@ offset_right = 405.0
 offset_bottom = 63.0
 text = "Movimiento"
 
-[node name="Label2" type="Label" parent="TutorialScreen/WASD"]
+[node name="Label2" type="Label" parent="TutorialScreen/Sobreviviente"]
 layout_mode = 0
 offset_left = 312.0
 offset_top = 416.0
@@ -92,7 +94,7 @@ offset_bottom = 440.0
 text = "Recargar
 "
 
-[node name="Label3" type="Label" parent="TutorialScreen/WASD"]
+[node name="Label3" type="Label" parent="TutorialScreen/Sobreviviente"]
 layout_mode = 0
 offset_left = 312.0
 offset_top = 152.0
@@ -100,7 +102,7 @@ offset_right = 379.0
 offset_bottom = 175.0
 text = "Disparar"
 
-[node name="Label4" type="Label" parent="TutorialScreen/WASD"]
+[node name="Label4" type="Label" parent="TutorialScreen/Sobreviviente"]
 layout_mode = 0
 offset_left = 312.0
 offset_top = 240.0
@@ -108,7 +110,7 @@ offset_right = 408.0
 offset_bottom = 263.0
 text = "Tomar arma"
 
-[node name="Label5" type="Label" parent="TutorialScreen/WASD"]
+[node name="Label5" type="Label" parent="TutorialScreen/Sobreviviente"]
 layout_mode = 0
 offset_left = 312.0
 offset_top = 328.0
@@ -116,10 +118,62 @@ offset_right = 400.0
 offset_bottom = 351.0
 text = "Botar arma"
 
-[node name="Label6" type="Label" parent="TutorialScreen/WASD"]
+[node name="Label6" type="Label" parent="TutorialScreen/Sobreviviente"]
 layout_mode = 0
 offset_left = 144.0
 offset_top = -64.0
 offset_right = 250.0
 offset_bottom = -41.0
 text = "Sobreviviente"
+
+[node name="ColorRect2" type="ColorRect" parent="TutorialScreen"]
+layout_mode = 0
+offset_left = 616.0
+offset_top = 72.0
+offset_right = 1088.0
+offset_bottom = 456.0
+color = Color(0, 0, 0, 1)
+
+[node name="Icons8-left-click-50" type="Sprite2D" parent="TutorialScreen/ColorRect2"]
+position = Vector2(96, 96)
+texture = ExtResource("1_25t65")
+
+[node name="Icons8-z-key-50" type="Sprite2D" parent="TutorialScreen/ColorRect2"]
+position = Vector2(96, 184)
+texture = ExtResource("9_hqox0")
+
+[node name="Icons8-x-key-50" type="Sprite2D" parent="TutorialScreen/ColorRect2"]
+position = Vector2(96, 272)
+texture = ExtResource("10_5fxvq")
+
+[node name="Label" type="Label" parent="TutorialScreen/ColorRect2"]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 88.0
+offset_right = 447.0
+offset_bottom = 111.0
+text = "Invocar zombie
+"
+
+[node name="Label2" type="Label" parent="TutorialScreen/ColorRect2"]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 176.0
+offset_right = 446.0
+offset_bottom = 199.0
+text = "Zombie normal"
+
+[node name="Label3" type="Label" parent="TutorialScreen/ColorRect2"]
+offset_left = 328.0
+offset_top = 264.0
+offset_right = 447.0
+offset_bottom = 287.0
+text = "Zombie pesado"
+
+[node name="Label4" type="Label" parent="TutorialScreen/ColorRect2"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = -16.0
+offset_right = 286.0
+offset_bottom = 7.0
+text = "Invocador"

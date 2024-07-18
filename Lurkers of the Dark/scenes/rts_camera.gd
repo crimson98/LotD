@@ -20,19 +20,19 @@ func _process(delta):
 		# Check if the mouse is near the edges of the screen
 		if mouse_pos.x < margin:
 			# Move camera left
-			translate(Vector2(-speed * delta * 100000, 0))
+			translate(Vector2(-speed * delta * 250000, 0))
 		
 		elif mouse_pos.x > screen_size.x - margin:
 			# Move camera right
-			translate(Vector2(speed * delta *100000, 0))
+			translate(Vector2(speed * delta * 250000, 0))
 	
 		if mouse_pos.y < margin:
 			# Move camera up
-			translate(Vector2(0, -speed * delta))
+			translate(Vector2(0, -speed * delta * 10))
 		
 		elif mouse_pos.y > screen_size.y - margin:
 			# Move camera down
-			translate(Vector2(0, speed * delta))
+			translate(Vector2(0, speed * delta * 10))
 
 	# Optionally clamp camera position to prevent it from moving too far from the game world
 	#clamp_position()
