@@ -20,6 +20,7 @@ properties/0/spawn = true
 properties/0/replication_mode = 0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(0.7, 0.7)
 collision_layer = 2
 collision_mask = 259
 safe_margin = 1.0
