@@ -1,5 +1,7 @@
-res://scenes/main.tscn
+res://scenes/sagrario.tscn
 res://scenes/units/heavy_zombie.gd
+res://scenes/sagrario.gd
+res://scenes/main.tscn
 res://scenes/player.tscn
 res://scenes/weapons/raycast_weapon.tscn
 res://scenes/units/zombie.tscn
@@ -8,7 +10,4 @@ res://scenes/rts_player.tscn
 res://ui/credits_screen.tscn
 res://ui/tutorial_screen.tscn
 res://scenes/lobby.tscn
-res://scenes/rts_camera.gd
-res://scenes/sagrario.tscn
-res://scenes/sagrario.gd
-res://scenes/rts_player.gd
+res://ui/gui.tscn
