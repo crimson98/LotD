@@ -149,6 +149,7 @@ func _ready() -> void:
 	sagrary2.invoked.connect(_on_sagrary_invoked)
 	sagrary3.invoked.connect(_on_sagrary_invoked)
 	sagrary4.invoked.connect(_on_sagrary_invoked)
+	
 	Debug.log(player_1.id)
 	Debug.log(player_2.id)
 	Debug.log(player_3.id)
@@ -158,6 +159,8 @@ func _ready() -> void:
 func _on_sagrary_invoked(zombie) -> void:
 	zombies.add_child(zombie, true)
 
+
+	
 func connect_players(player_data, counter, player_inst0, player_inst1, player_inst2, player_inst3) -> void:
 	if player_data.role == Statics.Role.ROLE_A and counter == 3:
 		player_inst0.global_position = player_a.global_position
