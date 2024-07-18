@@ -1,25 +1,8 @@
-<<<<<<< Updated upstream
 res://scenes/world.tscn
-=======
-res://scenes/weapons/raycast_weapon.tscn
->>>>>>> Stashed changes
 res://scenes/units/heavy_zombie.gd
-res://scenes/weapons/raycast_weapon.gd
-res://scenes/player.gd
-res://scenes/units/zombie.gd
-res://scenes/units/zombie.tscn
-res://scenes/player.tscn
-<<<<<<< Updated upstream
-res://ui/tutorial_screen.tscn
-res://ui/credits_screen.tscn
 res://scenes/main.tscn
 res://scenes/player.tscn
 res://scenes/weapons/raycast_weapon.tscn
-res://scenes/weapons/db_shotgun.tscn
-res://ui/gui.tscn
 res://scenes/units/zombie.tscn
-res://scenes/units/heavy_zombie.tscn
-res://autoloads/game.tscn
-=======
-res://scenes/main.tscn
->>>>>>> Stashed changes
+res://scenes/rts_player.tscn
+res://scenes/rts_camera.gd

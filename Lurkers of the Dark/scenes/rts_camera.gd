@@ -2,7 +2,7 @@ extends Camera2D
 # Speed of camera movement
 var speed = 1000.0
 
-@onready var CAM_DEBUG= true
+@onready var CAM_DEBUG= false
 
 func _process(delta):
 	# Get the mouse position

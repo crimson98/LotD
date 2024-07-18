@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/units/zombie.tscn" id="2_pqxl4"]
 [ext_resource type="Script" path="res://scenes/rts_camera.gd" id="3_8updw"]
 
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nnhi3"]
 properties/0/path = NodePath(".:score")
 properties/0/spawn = true
