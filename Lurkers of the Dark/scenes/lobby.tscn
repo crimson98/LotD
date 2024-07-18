@@ -1,23 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=6 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="Script" path="res://scenes/lobby.gd" id="1_g2fmt"]
 [ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
 [ext_resource type="PackedScene" uid="uid://bjebca4hbfnei" path="res://ui/credits_screen.tscn" id="3_inyce"]
+[ext_resource type="Texture2D" uid="uid://dpsxnlagtrvoe" path="res://assets/image.png" id="3_j63kn"]
 [ext_resource type="PackedScene" uid="uid://dysjix72wr4sb" path="res://ui/tutorial_screen.tscn" id="4_t7tsc"]
 
 [node name="Lobby" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g2fmt")
 lobby_player_scene = ExtResource("2_060bj")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Image" type="Sprite2D" parent="PanelContainer"]
+position = Vector2(55, -125)
+texture = ExtResource("3_j63kn")
 
 [node name="Menus" type="MarginContainer" parent="PanelContainer"]
 unique_name_in_owner = true
@@ -173,8 +186,10 @@ layout_mode = 2
 text = "5"
 
 [node name="TutorialScreen" parent="PanelContainer/Menus" instance=ExtResource("4_t7tsc")]
+visible = false
 
 [node name="CreditsScreen" parent="PanelContainer/Menus" instance=ExtResource("3_inyce")]
+visible = false
 
 [node name="StartTimer" type="Timer" parent="."]
 

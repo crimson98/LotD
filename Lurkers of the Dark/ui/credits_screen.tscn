@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bjebca4hbfnei"]
+[gd_scene load_steps=2 format=3 uid="uid://bjebca4hbfnei"]
+
+[ext_resource type="Texture2D" uid="uid://dpsxnlagtrvoe" path="res://assets/image.png" id="1_nda6e"]
 
 [node name="CreditsScreen" type="CanvasLayer"]
 
@@ -48,5 +50,20 @@ Assets
 Paepu
 https://cartographyassets.com/creator/peapu/
 Tyger_PURR
-https://cartographyassets.com/creator/tyger_purr/"
+https://cartographyassets.com/creator/tyger_purr/
+MaximBomba
+https://pixabay.com/sound-effects/rifle-or-shotgun-reload-6787/
+pixabay
+https://pixabay.com/sound-effects/080902-shotgun-39753/"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CreditsScreen"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="Image" type="Sprite2D" parent="CreditsScreen/TextureRect"]
+position = Vector2(304, -4)
+texture = ExtResource("1_nda6e")

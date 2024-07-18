@@ -1,5 +1,7 @@
-Timer
+TextureRect
+ColorRect
 Label
+Timer
 GridContainer
 Container
 Node2D
@@ -11,31 +13,3 @@ CollisionShape2D
 RayCast2D
 RaycastWeapon
 Node2D
-CanvasLayer
-<<<<<<< Updated upstream
-Timer
-ColorRect
-Button
-VBoxContainer
-MultiplayerSynchronizer
-AudioStreamPlayer2D
-Marker2D
-Button
-Panel
-ColorRect
-CollisionShape2D
-StaticBody2D
-Camera2D
-CollisionPolygon2D
-Area2D
-Line2D
-Sprite2D
-Node2D
-MarginContainer
-RemoteTransform2D
-ProgressBar
-CanvasLayer
-MultiplayerSynchronizer
-Timer
-=======
->>>>>>> Stashed changes
