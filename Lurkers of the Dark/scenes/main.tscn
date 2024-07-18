@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=13 format=3 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://8d3ys4aw51lk" path="res://scenes/player.tscn" id="2_jyiyy"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c0l00r4apxia7" path="res://scenes/sagrario.tscn" id="4_38sui"]
 [ext_resource type="Script" path="res://scenes/Weapons.gd" id="5_5b4be"]
 [ext_resource type="Texture2D" uid="uid://cd2d3kdi0v4u6" path="res://assets/LotDimg.png" id="5_qtwuu"]
+[ext_resource type="PackedScene" uid="uid://3k73svd5vrrc" path="res://scenes/weapons/db_shotgun.tscn" id="7_yioba"]
 [ext_resource type="PackedScene" uid="uid://d1c7viwdaqk0x" path="res://scenes/world.tscn" id="9_nxcra"]
 [ext_resource type="PackedScene" uid="uid://ccfj20dd6ws6r" path="res://ui/pause_screen.tscn" id="10_hd5gn"]
 
@@ -72,7 +73,7 @@ light_mask = 257
 position = Vector2(843, 136)
 
 [node name="Sagrary1" type="Marker2D" parent="SpawnMarker"]
-position = Vector2(-4926, -3073)
+position = Vector2(-4987, -2993)
 
 [node name="Sagrary2" type="Marker2D" parent="SpawnMarker"]
 position = Vector2(6456, -2832)
@@ -88,6 +89,8 @@ visibility_layer = 4
 
 [node name="Weapons" type="Node2D" parent="."]
 script = ExtResource("5_5b4be")
+
+[node name="DBShotgun" parent="Weapons" instance=ExtResource("7_yioba")]
 
 [node name="LotDimg" type="Sprite2D" parent="."]
 visible = false

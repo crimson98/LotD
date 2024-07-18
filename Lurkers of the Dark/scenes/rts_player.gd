@@ -59,7 +59,8 @@ func test(some_name):
 func invoke() -> void:
 	if not sagrario_scene:
 		return
-	var sag_inst = get_parent().get_parent().get_child(5)
+	# var sag_inst = get_parent().get_parent().get_child(5)
+	var sag_inst= get_tree().get_root().get_node("Main/Sagrarios")
 	for i in range(sag_inst.get_child_count()):
 		var sagr = sag_inst.get_child(i)
 		if sagr.entered:

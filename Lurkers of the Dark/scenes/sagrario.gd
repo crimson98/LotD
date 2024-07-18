@@ -28,10 +28,12 @@ func invoke(mouse_pos) -> void:
 
 
 func _on_Area2D_mouse_entered():
+	Debug.log("mouse area entered")
 	entered = true
 	return entered
 
 
 func _on_Area2D_mouse_exited():
+	Debug.log("mouse area entered")
 	entered = false
 	return entered

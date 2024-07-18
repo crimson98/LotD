@@ -9,3 +9,6 @@ res://ui/credits_screen.tscn
 res://ui/tutorial_screen.tscn
 res://scenes/lobby.tscn
 res://scenes/rts_camera.gd
+res://scenes/sagrario.tscn
+res://scenes/sagrario.gd
+res://scenes/rts_player.gd

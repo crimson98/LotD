@@ -164,6 +164,7 @@ offset_bottom = 199.0
 text = "Zombie normal"
 
 [node name="Label3" type="Label" parent="TutorialScreen/ColorRect2"]
+layout_mode = 0
 offset_left = 328.0
 offset_top = 264.0
 offset_right = 447.0

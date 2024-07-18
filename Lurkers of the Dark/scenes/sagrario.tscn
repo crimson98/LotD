@@ -4,9 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_us07n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvjo5"]
-radius = 232.484
+radius = 921.122
 
 [node name="Sagrario" type="Area2D"]
+top_level = true
+z_index = 10
 script = ExtResource("1_6sl7l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
