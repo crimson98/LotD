@@ -70,3 +70,8 @@ position = Vector2(164, 15)
 
 [node name="HGun" parent="." instance=ExtResource("9_5b1a1")]
 position = Vector2(164, 15)
+
+[node name="PointTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="PointTimer" to="." method="_on_point_timer_timeout"]

@@ -6,6 +6,7 @@ signal health_changed(value)
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 @onready var gui: CanvasLayer = $GUI
 @onready var game_over_screen: Control = $GameOverScreen/GameOverScreen
+@onready var point_timer= $PointTimer
 
 @onready var short_weapon_stance: Sprite2D= $Graphics/ShortWeapon
 @onready var short_gun_position= $SGunPos
@@ -17,7 +18,7 @@ signal health_changed(value)
 @export var db_shotgun_scene: PackedScene
 @export var ba_rifle_scene: PackedScene
 
-@export var points= 1000
+@export var points= 0
 @export var speed = 800
 @export var look_direction = Vector2.ZERO
 @export var health = 100:
@@ -59,6 +60,7 @@ func _ready():
 	handgun.ammo_change.connect(_update_ammo)
 	gui.update_ammo(handgun.get_current_ammo())
 	gui.update_points(points)
+	point_timer.start()
 
 # add a new variable "sidearm", which will contain a pistol
 # if not weapon in hand, call sidearm methods
@@ -235,3 +237,8 @@ func send_data(pos: Vector2, vel: Vector2, look: Vector2):
 	global_position = lerp(global_position, pos, 0.75)
 	velocity = lerp(velocity, vel, 0.75)
 	look_direction= lerp(look_direction, look, 0.75)
+
+
+func _on_point_timer_timeout():
+	points+= 5
+	gui.update_points(points)
