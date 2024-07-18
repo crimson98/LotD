@@ -1,4 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
+
 ::res://::1721258338
 export_presets.cfg::TextFile::-1::1720389897::0::1::::<><>::
 icon.svg::CompressedTexture2D::1381043452805484575::1712837252::1721258339::1::::<><>::
@@ -155,3 +156,4 @@ statics.gd::GDScript::-1::1720392656::0::1::::Statics<>Node<>::
 game_over_screen.tscn::PackedScene::5870662069752382878::1720392656::0::1::::<><>::
 gui.gd::GDScript::-1::1720392656::0::1::::<>CanvasLayer<>::
 gui.tscn::PackedScene::7459285504535477431::1721169431::0::1::::<><>::res://ui/gui.gd
+

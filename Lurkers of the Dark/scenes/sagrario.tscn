@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0l00r4apxia7"]
+[gd_scene load_steps=5 format=3 uid="uid://c0l00r4apxia7"]
 
 [ext_resource type="Script" path="res://scenes/sagrario.gd" id="1_6sl7l"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_us07n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvjo5"]
 radius = 232.484
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ss1yd"]
+properties/0/path = NodePath(".:health")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:dead")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Sagrario" type="Area2D"]
 script = ExtResource("1_6sl7l")
@@ -19,3 +27,14 @@ texture = ExtResource("1_us07n")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(44, 104)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ss1yd")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -97.0
+offset_top = -103.0
+offset_right = 98.0
+offset_bottom = -76.0
+fill_mode = 1
+show_percentage = false
