@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dplu221g2unkm"]
 
-[ext_resource type="Script" path="res://scenes/RTSPlayer.gd" id="1_h475b"]
+[ext_resource type="Script" path="res://scenes/rts_player.gd" id="1_h475b"]
 [ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/units/zombie.tscn" id="2_pqxl4"]
-[ext_resource type="Script" path="res://scenes/rtscamera.gd" id="3_8updw"]
+[ext_resource type="Script" path="res://scenes/rts_camera.gd" id="3_8updw"]
+
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nnhi3"]
 properties/0/path = NodePath(".:score")

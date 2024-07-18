@@ -1,35 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgyx5nfep28xe"]
+[gd_scene load_steps=5 format=3 uid="uid://dgyx5nfep28xe"]
 
 [ext_resource type="Script" path="res://scenes/weapons/raycast_weapon.gd" id="1_ivyfg"]
 [ext_resource type="Texture2D" uid="uid://d1352lym3gnye" path="res://assets/shotgun(1).svg" id="2_pldat"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l2bk"]
-size = Vector2(220, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w20rk"]
 radius = 15.802
 
 [sub_resource type="AudioStreamMP3" id="AudioStreamMP3_smioq"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jmpe5"]
-properties/0/path = NodePath(".:current_clip")
-properties/0/spawn = true
-properties/0/replication_mode = 2
-properties/1/path = NodePath(".:current_ammo")
-properties/1/spawn = true
-properties/1/replication_mode = 2
-properties/2/path = NodePath(".:fireable")
-properties/2/spawn = true
-properties/2/replication_mode = 2
-
 [node name="RaycastWeapon" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_ivyfg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(100, 0)
-shape = SubResource("RectangleShape2D_6l2bk")
 
 [node name="Graphics" type="Node2D" parent="."]
 
@@ -61,44 +43,9 @@ one_shot = true
 
 [node name="RaycastsNode" type="Node2D" parent="."]
 
-[node name="Pellet1" type="RayCast2D" parent="RaycastsNode"]
-position = Vector2(220, 0)
-target_position = Vector2(1250, 0)
-collision_mask = 3
-collide_with_areas = true
-collide_with_bodies = false
-
-[node name="Pellet2" type="RayCast2D" parent="RaycastsNode"]
-position = Vector2(220, 0)
-target_position = Vector2(1250, 0)
-collision_mask = 3
-
-[node name="Pellet3" type="RayCast2D" parent="RaycastsNode"]
-position = Vector2(220, 0)
-target_position = Vector2(1250, 0)
-collision_mask = 3
-
-[node name="Pellet4" type="RayCast2D" parent="RaycastsNode"]
-position = Vector2(220, 0)
-target_position = Vector2(1250, 0)
-collision_mask = 3
-
-[node name="Pellet5" type="RayCast2D" parent="RaycastsNode"]
-position = Vector2(220, 0)
-target_position = Vector2(1250, 0)
-collision_mask = 3
-
-[node name="Pellet6" type="RayCast2D" parent="RaycastsNode"]
-position = Vector2(220, 0)
-target_position = Vector2(1250, 0)
-collision_mask = 3
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamMP3_smioq")
 area_mask = 3
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_jmpe5")
 
 [connection signal="body_entered" from="PickArea" to="." method="_on_pick_area_body_entered"]
 [connection signal="body_exited" from="PickArea" to="." method="_on_pick_area_body_exited"]

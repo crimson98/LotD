@@ -18,7 +18,8 @@ class_name Zombie
 
 var move_speed
 var damage
-@onready var attack_cooldown
+@onready var attack_cooldown 
+@onready var despawn_timer = $Despawn_Timer
 
 var player_in_area = false
 var players = []
@@ -106,6 +107,7 @@ func kill():
 	$Graphics/Alive.hide()
 	$CollisionShape2D.disabled = true
 	z_index = -1
+	despawn_timer.start()
 
 
 func update_health():
@@ -118,10 +120,20 @@ func update_health():
 		health_bar.visible = true
 
 
+@rpc ("any_peer", "call_local")
+func free():
+	queue_free()
+
+
 func enemy():
 	pass
+
 
 @rpc
 func send_data(pos: Vector2, vel: Vector2):
 	global_position = lerp(global_position, pos, 0.75)
 	velocity = lerp(velocity, vel, 0.75)
+
+
+func _on_despawn_timer_timeout():
+	free.rpc()
