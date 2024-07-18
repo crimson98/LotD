@@ -2,7 +2,7 @@ extends Node2D
 
 @export var zombie_scene = PackedScene
 @export var heavy_scene = PackedScene
-@export var points = 100
+@export var points = 1000
 @export var zscene = 0
 @export var cost = 10
 var sagrario_scene = preload("res://scenes/sagrario.tscn")
@@ -81,3 +81,8 @@ func invoke(zscene) -> void:
 		var sagr = sag_inst.get_child(i)
 		if sagr.entered:
 			sagr.invoke.rpc(get_global_mouse_position(), zscene)
+
+
+func _on_score_time_timeout():
+	print("me detuve")
+	points += 10

@@ -64,6 +64,7 @@ func take_damage(damage):
 
 @rpc("any_peer", "call_local")
 func get_damaged(dmg):
+	print("auch")
 	health -= dmg
 	if health <= 0:
 		kill()

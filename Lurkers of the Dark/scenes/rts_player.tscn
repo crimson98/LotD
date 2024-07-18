@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dplu221g2unkm"]
+[gd_scene load_steps=7 format=3 uid="uid://dplu221g2unkm"]
 
 [ext_resource type="Script" path="res://scenes/rts_player.gd" id="1_h475b"]
 [ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/units/zombie.tscn" id="2_pqxl4"]
 [ext_resource type="PackedScene" uid="uid://cxsmiih310ffa" path="res://scenes/units/heavy_zombie.tscn" id="3_5b4wh"]
 [ext_resource type="Script" path="res://scenes/rts_camera.gd" id="3_8updw"]
+[ext_resource type="Script" path="res://scenes/ScoreTime.gd" id="5_r260c"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nnhi3"]
 properties/0/path = NodePath(".:score")
@@ -26,3 +27,8 @@ replication_config = SubResource("SceneReplicationConfig_nnhi3")
 position = Vector2(300000, 5.72205e-06)
 zoom = Vector2(0.25, 0.25)
 script = ExtResource("3_8updw")
+
+[node name="ScoreTime" type="Timer" parent="."]
+script = ExtResource("5_r260c")
+
+[connection signal="timeout" from="ScoreTime" to="." method="_on_score_time_timeout"]
