@@ -80,7 +80,10 @@ func _on_hitbox_body_exited(body):
 func attack_player():
 	if player_in_attack_range and attack_cooldown.is_stopped():
 		players_being_attacked[0].health -= damage
-		
+		var players = self.get_parent().get_parent().get_child(0)
+		for player in players:
+			if player == 1:
+				player.score += 10
 		if players_being_attacked[0].dead:
 			players.erase(players_being_attacked[0])
 			

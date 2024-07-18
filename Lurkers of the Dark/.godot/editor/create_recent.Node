@@ -1,8 +1,9 @@
 Timer
-ColorRect
+Button
+NinePatchRect
 Control
 CanvasLayer
-Button
+ColorRect
 VBoxContainer
 MultiplayerSynchronizer
 RaycastWeapon
@@ -11,4 +12,3 @@ Marker2D
 Node2D
 Label
 Panel
-AnimationPlayer

@@ -1,6 +1,10 @@
 extends Node2D
 
 @export var zombie_scene = PackedScene
+@export var heavy_scene = PackedScene
+@export var points = 100
+@export var zscene = 0
+@export var cost = 10
 var sagrario_scene = preload("res://scenes/sagrario.tscn")
 @export var score = 1 :
 	set(value):
@@ -26,16 +30,30 @@ func _input(event: InputEvent) -> void:
 			# triggers syncronizer
 			score += 1
 		if event.is_action_pressed("invoke"):
-			invoke()
+			if points >= cost:
+				invoke(zscene)
+				points -= cost
+			else:
+				pass
+		if event.is_action_pressed("inst_h"):
+			zscene = 1
+			cost = 30
+		if event.is_action_pressed("inst_z"):
+			zscene = 0
+			cost = 10
 
-
-
+func _physics_process(delta):
+	pass
 
 func setup(player_data: Statics.PlayerData):
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
 	multiplayer_spawner.set_multiplayer_authority(player_data.id)
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
+
+func _on_scoretime_timeout():
+	print("me detuve")
+	points += 5
 
 
 func spawner(spawn_object):
@@ -56,11 +74,13 @@ func test(name):
 	Debug.log(sender_player.name)
 
 
-func invoke() -> void:
+func invoke(zscene) -> void:
 	if not sagrario_scene:
+		points += cost
 		return
 	var sag_inst = get_parent().get_parent().get_child(5)
 	for i in range(sag_inst.get_child_count()):
 		var sagr = sag_inst.get_child(i)
 		if sagr.entered:
-			sagr.invoke.rpc(get_global_mouse_position())
+			sagr.invoke.rpc(get_global_mouse_position(), zscene)
+

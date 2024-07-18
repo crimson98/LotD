@@ -1,18 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://dplu221g2unkm"]
+[gd_scene load_steps=7 format=3 uid="uid://dplu221g2unkm"]
 
 [ext_resource type="Script" path="res://scenes/RTSPlayer.gd" id="1_h475b"]
-[ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/units/zombie.tscn" id="2_pqxl4"]
+[ext_resource type="PackedScene" uid="uid://7sqyhl1v6fdo" path="res://scenes/units/basic_zombie.tscn" id="2_lmeom"]
 [ext_resource type="Script" path="res://scenes/rtscamera.gd" id="3_8updw"]
+[ext_resource type="PackedScene" uid="uid://cxsmiih310ffa" path="res://scenes/units/heavy_zombie.tscn" id="3_k8n30"]
+[ext_resource type="Script" path="res://scenes/Scoretime.gd" id="5_roipf"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nnhi3"]
 properties/0/path = NodePath(".:score")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath(".:points")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:cost")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [node name="RTSPlayer" type="Node2D"]
 scale = Vector2(1e-05, 0.456272)
 script = ExtResource("1_h475b")
-zombie_scene = ExtResource("2_pqxl4")
+zombie_scene = ExtResource("2_lmeom")
+heavy_scene = ExtResource("3_k8n30")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath(".")
@@ -24,3 +33,10 @@ replication_config = SubResource("SceneReplicationConfig_nnhi3")
 position = Vector2(300000, 5.72205e-06)
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("3_8updw")
+
+[node name="Scoretime" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+script = ExtResource("5_roipf")
+
+[connection signal="timeout" from="Scoretime" to="." method="_on_scoretime_timeout"]

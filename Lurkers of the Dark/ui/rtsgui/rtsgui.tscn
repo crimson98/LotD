@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://46bxexgl3y8j"]
+
+[ext_resource type="Texture2D" uid="uid://dc3ig6jd2ysi" path="res://assets/PNG/Green/Default/button_rectangle_depth_flat.png" id="1_62cxv"]
+[ext_resource type="Texture2D" uid="uid://d3px3bwn4nvk6" path="res://assets/PNG/Green/Default/button_rectangle_depth_gradient.png" id="2_ryy1u"]
+
+[node name="Rtsgui" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -133.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_62cxv")
+
+[node name="Button" type="Button" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 112.0
+offset_top = -103.0
+offset_right = -801.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 0
+icon = ExtResource("2_ryy1u")
+
+[node name="Button2" type="Button" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 477.0
+offset_top = -94.0
+offset_right = -422.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 0
+icon = ExtResource("2_ryy1u")
