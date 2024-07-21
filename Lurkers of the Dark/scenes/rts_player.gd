@@ -12,6 +12,9 @@ var sagrario_scene = preload("res://scenes/sagrario.tscn")
 @onready var multiplayer_spawner = $MultiplayerSpawner
 @onready var multiplayer_synchronizer = $MultiplayerSynchronizer
 
+var player_id:
+	set(value):
+		player_id = value
 
 		# Debug.log("Player %s score %d" % [name, score])
 # Called when the node enters the scene tree for the first time.
@@ -47,6 +50,7 @@ func _input(event: InputEvent) -> void:
 
 
 func setup(player_data: Statics.PlayerData):
+	player_id= player_data.id
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
 	multiplayer_spawner.set_multiplayer_authority(player_data.id)
@@ -60,7 +64,7 @@ func spawner(spawn_object):
 		add_child(obj)
 		
 func player():
-	pass
+	return Statics.Role.ROLE_B
 
 @rpc("authority", "call_local", "reliable")
 func test(some_name):
@@ -82,7 +86,10 @@ func invoke(zscene) -> void:
 		if sagr.entered:
 			sagr.invoke.rpc(get_global_mouse_position(), zscene)
 
+@rpc("authority", "call_local", "reliable")
+func init_position(pos:Vector2):
+	global_position= pos
 
 func _on_score_time_timeout():
-	print("me detuve")
+	# print("me detuve")
 	points += 10

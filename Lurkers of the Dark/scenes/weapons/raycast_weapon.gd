@@ -87,7 +87,6 @@ func _deplete_ammo(volley: int):
 # everyone
 # edit reload in player, shouldn't be an rpc
 
-@rpc("authority", "call_local", "reliable")
 func reload(caller: int):
 	Debug.log("reload")
 	if fireable: 
@@ -121,7 +120,6 @@ func pick_up(caller: int):
 	$PickArea.set_monitoring(false)
 	move_dir= Vector2.ZERO
 	speed= 0
-	ammo_change.emit()
 	fire_rate.start()
 	# $Graphics/Dropped.hide()
 	# $Graphics/OnHand.show()
@@ -181,7 +179,6 @@ func _delete_self():
 
 func _on_pick_area_body_entered(body):
 	if body.has_method("shooter_player") and body.get_collision_layer()== 2:
-		Debug.log("added weapon to player: " + body.name)
 		body.pickable_weapons_in_range.append(self)
 
 func _on_pick_area_body_exited(body):

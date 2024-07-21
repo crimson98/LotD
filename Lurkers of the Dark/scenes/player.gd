@@ -85,9 +85,8 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("drop_weapon") and weapon_in_hand!= null and weapon_in_hand.fireable :
 			_drop_weapon.rpc(get_multiplayer_authority())
 		
-		if event.is_action_pressed("interact") and len(pickable_weapons_in_range)> 0:
-			if weapon_in_hand== null:
-				_pick_up_weapon.rpc(get_multiplayer_authority())
+		if event.is_action_pressed("interact") and weapon_in_hand== null and len(pickable_weapons_in_range)> 0:
+			_pick_up_weapon.rpc(get_multiplayer_authority())
 		
 		if event.is_action_pressed("fire"):
 			if weapon_in_hand!= null:
@@ -124,6 +123,8 @@ func setup(player_data: Statics.PlayerData):
 	if multiplayer.get_unique_id() == player_data.id:
 		gui.show()
 
+
+# Could change the instantiate and name sections to a separate script
 @rpc("any_peer", "call_local", "reliable")
 func _spawn_weapon(wtype: int):
 	var spawn_point= position + Vector2(210,0).rotated(global_rotation)
@@ -144,11 +145,11 @@ func _spawn_weapon(wtype: int):
 
 @rpc("any_peer", "call_local", "reliable")
 func _pick_up_weapon(caller: int):
-	Debug.log(pickable_weapons_in_range)
 	weapon_in_hand= pickable_weapons_in_range.pop_front()
 	if weapon_in_hand!= null:
-		Debug.log(str(caller) + " passed weapon_in_hand_check")
+		# Debug.log(str(caller) + " passed weapon_in_hand_check")
 		if is_multiplayer_authority():
+			Debug.log(str(caller) + " passed pick_up multiplayer_authority_check")
 			weapon_in_hand.rpc('pick_up', get_multiplayer_authority())
 		weapon_in_hand.get_parent().remove_child(weapon_in_hand)
 		if weapon_in_hand.short_gun:
@@ -226,11 +227,18 @@ func take_damage(damage):
 func shooter_player():
 	pass
 
+func player():
+	return Statics.Role.ROLE_A
+
 @rpc("authority", "call_local", "reliable")
 func test(name):
 	var message = "test " + name
 	var sender_id = multiplayer.get_remote_sender_id()
 	var sender_player = Game.get_player(sender_id)
+
+@rpc("authority", "call_local", "reliable")
+func init_position(pos:Vector2):
+	global_position= pos
 
 @rpc
 func send_data(pos: Vector2, vel: Vector2, look: Vector2):

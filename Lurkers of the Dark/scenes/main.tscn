@@ -23,7 +23,7 @@ properties/0/replication_mode = 2
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ysfbh")
-player_scene = ExtResource("2_jyiyy")
+shooter_player = ExtResource("2_jyiyy")
 rts_player = ExtResource("3_gr287")
 sagrario = ExtResource("4_38sui")
 
@@ -56,21 +56,24 @@ light_mask = 257
 
 [node name="SpawnMarker" type="Node2D" parent="."]
 
-[node name="PlayerA" type="Marker2D" parent="SpawnMarker"]
+[node name="Spawn1" type="Marker2D" parent="SpawnMarker"]
 light_mask = 257
-position = Vector2(905, 2730)
+position = Vector2(0, 2504)
 
-[node name="PlayerB" type="Marker2D" parent="SpawnMarker"]
+[node name="Spawn2" type="Marker2D" parent="SpawnMarker"]
 light_mask = 257
-position = Vector2(-2999, 526)
+position = Vector2(305, 2483)
 
-[node name="PlayerC" type="Marker2D" parent="SpawnMarker"]
+[node name="Spawn3" type="Marker2D" parent="SpawnMarker"]
 light_mask = 257
-position = Vector2(429, -1620)
+position = Vector2(10, 2804)
 
-[node name="PlayerD" type="Marker2D" parent="SpawnMarker"]
+[node name="Spawn4" type="Marker2D" parent="SpawnMarker"]
 light_mask = 257
-position = Vector2(843, 136)
+position = Vector2(300, 2795)
+
+[node name="Spawn5" type="Marker2D" parent="SpawnMarker"]
+position = Vector2(5332, 3310)
 
 [node name="Sagrary1" type="Marker2D" parent="SpawnMarker"]
 position = Vector2(-4987, -2993)

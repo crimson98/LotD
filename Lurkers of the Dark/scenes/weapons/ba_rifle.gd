@@ -6,7 +6,7 @@ func _ready():
 	ammo= 20
 	burst= 1
 	damage= 55
-	penetration= 5
+	penetration= 2
 	cone_deg= 2
 	current_clip = clip
 	current_ammo = ammo
