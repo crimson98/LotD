@@ -68,6 +68,7 @@ func _ready():
 # you always have to call the same thing
 # sidearm should have infinite ammo and not partial reload
 
+#testing gitignore
 
 func _physics_process(delta: float) -> void:
 	if dead:
