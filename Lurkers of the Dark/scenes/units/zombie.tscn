@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://rgj82y1j3a6o"]
+[gd_scene load_steps=9 format=3 uid="uid://rgj82y1j3a6o"]
 
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_6ixc6"]
 [ext_resource type="Script" path="res://scenes/units/zombie.gd" id="1_m41g3"]
+[ext_resource type="Script" path="res://states/machine.gd" id="3_mh3et"]
+[ext_resource type="Script" path="res://states/state_zombie_idle.gd" id="4_uiwjf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6dea2"]
 radius = 80.025
@@ -80,6 +82,14 @@ texture = ExtResource("1_6ixc6")
 [node name="Despawn_Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_mh3et")
+initial_state = NodePath("NZombieIdle")
+
+[node name="NZombieIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("holder")]
+script = ExtResource("4_uiwjf")
+holder = NodePath("../..")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

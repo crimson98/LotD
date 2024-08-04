@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b631sya2cmfk7"]
+
+[ext_resource type="Script" path="res://chunking/chunking.gd" id="1_oavpe"]
+[ext_resource type="PackedScene" uid="uid://bhjx28lkj7odc" path="res://chunking/chunk_scene.tscn" id="2_53ib3"]
+
+[node name="ChunkMap" type="Node2D"]
+script = ExtResource("1_oavpe")
+chunk_scene = ExtResource("2_53ib3")

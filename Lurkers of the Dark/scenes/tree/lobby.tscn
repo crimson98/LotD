@@ -1,0 +1,199 @@
+[gd_scene load_steps=6 format=3 uid="uid://bslhrv3eo36wd"]
+
+[ext_resource type="Script" path="res://scenes/tree/lobby.gd" id="1_g2fmt"]
+[ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
+[ext_resource type="PackedScene" uid="uid://bjebca4hbfnei" path="res://ui/credits_screen.tscn" id="3_inyce"]
+[ext_resource type="Texture2D" uid="uid://dpsxnlagtrvoe" path="res://assets/image.png" id="3_j63kn"]
+[ext_resource type="PackedScene" uid="uid://dysjix72wr4sb" path="res://ui/tutorial_screen.tscn" id="4_t7tsc"]
+
+[node name="Lobby" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g2fmt")
+lobby_player_scene = ExtResource("2_060bj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Image" type="Sprite2D" parent="PanelContainer"]
+position = Vector2(55, -125)
+texture = ExtResource("3_j63kn")
+
+[node name="Menus" type="MarginContainer" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FirstMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Play" type="Button" parent="PanelContainer/Menus/FirstMenu"]
+layout_mode = 2
+text = "Play"
+
+[node name="Tutorial" type="Button" parent="PanelContainer/Menus/FirstMenu"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="Credits" type="Button" parent="PanelContainer/Menus/FirstMenu"]
+layout_mode = 2
+text = "Credits"
+
+[node name="StartMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/StartMenu"]
+layout_mode = 2
+text = "Name:
+"
+
+[node name="User" type="LineEdit" parent="PanelContainer/Menus/StartMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Menus/StartMenu"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="PanelContainer/Menus/StartMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host"
+
+[node name="Join" type="Button" parent="PanelContainer/Menus/StartMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="BackStart" type="Button" parent="PanelContainer/Menus/StartMenu/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="JoinMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/Menus/JoinMenu"]
+layout_mode = 2
+text = "IP:
+"
+
+[node name="IP" type="LineEdit" parent="PanelContainer/Menus/JoinMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "127.0.0.1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Menus/JoinMenu"]
+layout_mode = 2
+
+[node name="BackJoin" type="Button" parent="PanelContainer/Menus/JoinMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="ConfirmJoin" type="Button" parent="PanelContainer/Menus/JoinMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="Info" type="Label" parent="PanelContainer/Menus/JoinMenu"]
+visible = false
+layout_mode = 2
+
+[node name="ReadyMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+text = "Players:
+"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+
+[node name="Players" type="VBoxContainer" parent="PanelContainer/Menus/ReadyMenu/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+
+[node name="RoleA" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Role A"
+
+[node name="RoleB" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Role B"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+
+[node name="BackReady" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back
+"
+
+[node name="Ready" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ready"
+
+[node name="TimeContainer" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/Menus/ReadyMenu/TimeContainer"]
+layout_mode = 2
+text = "Starting in:"
+
+[node name="Time" type="Label" parent="PanelContainer/Menus/ReadyMenu/TimeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5"
+
+[node name="TutorialScreen" parent="PanelContainer/Menus" instance=ExtResource("4_t7tsc")]
+visible = false
+
+[node name="CreditsScreen" parent="PanelContainer/Menus" instance=ExtResource("3_inyce")]
+visible = false
+
+[node name="StartTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="PanelContainer/Menus/FirstMenu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="PanelContainer/Menus/FirstMenu/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="PanelContainer/Menus/FirstMenu/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="PanelContainer/Menus/StartMenu/HBoxContainer/BackStart" to="." method="_on_back_start_pressed"]

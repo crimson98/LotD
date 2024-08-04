@@ -32,11 +32,16 @@ func _ready():
 
 
 func _physics_process(delta):
+	move_and_slide()
 	if dead:
 		return
 		
-	zombie_movement()
+	# zombie_movement()
 	attack_player()
+
+func _process(delta):
+	if multiplayer.get_unique_id()== 1:
+		send_data.rpc(global_position, velocity)
 	
 	
 func zombie_movement():
@@ -90,9 +95,9 @@ func attack_player():
 		attack_cooldown.start()
 	
 
-func take_damage(damage):
+func take_damage(some_damage):
 	if is_multiplayer_authority():
-		health -= damage
+		health -= some_damage
 
 @rpc("any_peer", "call_local")
 func get_damaged(dmg):
@@ -129,7 +134,7 @@ func enemy():
 	pass
 
 
-@rpc
+@rpc("authority", "call_remote", "unreliable")
 func send_data(pos: Vector2, vel: Vector2):
 	global_position = lerp(global_position, pos, 0.75)
 	velocity = lerp(velocity, vel, 0.75)
