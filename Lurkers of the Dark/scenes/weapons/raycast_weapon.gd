@@ -50,8 +50,6 @@ func fire(caller: int):
 	# instantiate some raycasts
 	# get the colissions
 	# trigger damage on colissions
-	
-	# maybe check if fireable on _process
 	Debug.log("fire rpc caller: " + str(caller) + " fireable: " + str(fireable))
 	
 	if fireable and current_clip> 0:

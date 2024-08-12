@@ -2,7 +2,8 @@ extends Camera2D
 # Speed of camera movement
 var speed = 1000.0
 
-@onready var CAM_DEBUG= true
+@onready var CAM_DEBUG= false
+@onready var ground_pos: Vector2
 
 func _process(delta):
 	# Get the mouse position
@@ -35,7 +36,7 @@ func _process(delta):
 			translate(Vector2(0, speed * delta * 10))
 
 	# Optionally clamp camera position to prevent it from moving too far from the game world
-	#clamp_position()
+	clamp_position()
 
 func clamp_position():
 	# Define boundaries of the game world

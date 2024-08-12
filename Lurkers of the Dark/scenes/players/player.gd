@@ -62,6 +62,7 @@ func _ready():
 	gui.update_points(points)
 	point_timer.start()
 	z_index= 10
+	# used to render in front of the background image
 
 # add a new variable "sidearm", which will contain a pistol
 # if not weapon in hand, call sidearm methods
@@ -69,7 +70,7 @@ func _ready():
 # you always have to call the same thing
 # sidearm should have infinite ammo and not partial reload
 
-#testing gitignore
+# testing gitignore
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -231,12 +232,6 @@ func shooter_player():
 
 func player():
 	return Statics.Role.ROLE_A
-
-@rpc("authority", "call_local", "reliable")
-func test(name):
-	var message = "test " + name
-	var sender_id = multiplayer.get_remote_sender_id()
-	var sender_player = Game.get_player(sender_id)
 
 @rpc("authority", "call_local", "reliable")
 func init_position(pos:Vector2):

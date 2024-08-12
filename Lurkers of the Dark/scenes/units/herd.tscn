@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2qnwipgiatwq"]
+
+[ext_resource type="Script" path="res://scenes/units/herd.gd" id="1_wg0pb"]
+
+[node name="Herd" type="Node2D"]
+script = ExtResource("1_wg0pb")

@@ -11,6 +11,8 @@ var sagrario_scene = preload("res://scenes/units/sagrario.tscn")
 		score = value
 @onready var multiplayer_spawner = $MultiplayerSpawner
 @onready var multiplayer_synchronizer = $MultiplayerSynchronizer
+@onready var camera= $RtsCamera
+@export var herd_scene: PackedScene
 
 var player_id:
 	set(value):
@@ -44,10 +46,20 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("inst_z"):
 			zscene = 0
 			cost = 10
+		if event.is_action_pressed("fire"):
+			move_all_zombies.rpc()
 
-
-
-
+@rpc("any_peer", "call_local", "reliable")
+func move_all_zombies():
+	var some_herd= herd_scene.instantiate()
+	var herds= get_tree().get_root().get_node("Main/Herds")
+	var zombies= []
+	herds.add_child(some_herd, true)
+	var zombie_destination= get_global_mouse_position()
+	for zombie in get_tree().get_root().get_node("Main/Zombies").get_children():
+		zombie.destination= zombie_destination
+		zombies.append(zombie)
+	some_herd.assign_members(zombies)
 
 func setup(player_data: Statics.PlayerData):
 	player_id= player_data.id
@@ -57,11 +69,11 @@ func setup(player_data: Statics.PlayerData):
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
 
 
-func spawner(spawn_object):
-	if Input.is_action_pressed("mouse_click"):
-		var obj = spawn_object.instance()
-		obj.position = get_global_mouse_position()
-		add_child(obj)
+#func spawner(spawn_object):
+	#if Input.is_action_pressed("mouse_click"):
+		#var obj = spawn_object.instance()
+		#obj.position = get_global_mouse_position()
+		#add_child(obj)
 		
 func player():
 	return Statics.Role.ROLE_B
@@ -79,7 +91,6 @@ func invoke(some_zscene) -> void:
 	if not sagrario_scene:
 		points += cost
 		return
-	# var sag_inst = get_parent().get_parent().get_child(5)
 	var sag_inst= get_tree().get_root().get_node("Main/Sagrarios")
 	for i in range(sag_inst.get_child_count()):
 		var sagr = sag_inst.get_child(i)
@@ -91,5 +102,4 @@ func init_position(pos:Vector2):
 	global_position= pos
 
 func _on_score_time_timeout():
-	# print("me detuve")
 	points += 10

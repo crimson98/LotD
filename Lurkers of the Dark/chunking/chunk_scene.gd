@@ -14,6 +14,8 @@ func set_parameters(some_coords: Vector2, some_scale: int):
 func _load_texture():
 	var path_to_string= "res://mapsectioned/" + str(chunk_coords.y) + "-" \
 	 + str(chunk_coords.x) + ".png"
+	# should load first x coords then y coords, but I mixed them up in the assets folder
+	# since I'm dumb
 	# Debug.log("loading from: " + path_to_string)
 	var image= load(path_to_string)
 	if image!= null:
@@ -23,6 +25,7 @@ func _load_texture():
 		ground_texture.scale= Vector2(chunk_scale, chunk_scale)
 		ground_texture.show_behind_parent= true
 		ground_texture.texture_filter= CanvasItem.TEXTURE_FILTER_NEAREST
+		ground_texture.visible= false
 		# for pixel_art backgrounds
 
 func delete():

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dplu221g2unkm"]
+[gd_scene load_steps=8 format=3 uid="uid://dplu221g2unkm"]
 
 [ext_resource type="Script" path="res://scenes/players/rts_player.gd" id="1_h475b"]
 [ext_resource type="PackedScene" uid="uid://rgj82y1j3a6o" path="res://scenes/units/zombie.tscn" id="2_pqxl4"]
 [ext_resource type="PackedScene" uid="uid://cxsmiih310ffa" path="res://scenes/units/heavy_zombie.tscn" id="3_5b4wh"]
 [ext_resource type="Script" path="res://scenes/players/rts_camera.gd" id="3_8updw"]
+[ext_resource type="PackedScene" uid="uid://b2qnwipgiatwq" path="res://scenes/units/herd.tscn" id="4_uh1dc"]
 [ext_resource type="Script" path="res://scenes/tree/ScoreTime.gd" id="5_r260c"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nnhi3"]
@@ -16,6 +17,7 @@ scale = Vector2(1e-05, 0.456272)
 script = ExtResource("1_h475b")
 zombie_scene = ExtResource("2_pqxl4")
 heavy_scene = ExtResource("3_5b4wh")
+herd_scene = ExtResource("4_uh1dc")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath(".")

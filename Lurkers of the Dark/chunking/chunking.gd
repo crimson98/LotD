@@ -8,8 +8,8 @@ extends Node2D
 var chunk_l= 352
 var chunk_h= 256
 var chunk_scale= 10
-# chunk_l is the length (horizontal axis) of the chunk of map
-# chunk_h is the heigth (vertical axis) of the chunk of map
+# chunk_l is the length (horizontal axis) of the chunk of map in pixels
+# chunk_h is the heigth (vertical axis) of the chunk of map in pixels
 # chunk_scale is used to apply a scale transform to each chunk when loading 
 
 var player_on_chunk_coords: Vector2
@@ -79,5 +79,5 @@ func _on_players_child_entered_tree(_node):
 			player_following= player
 			# Debug.log("Following player: " + str(player_following.player_id))
 			break
-	if player_following!=null: 
+	if player_following!= null: 
 		_load_chunks()
